@@ -11,7 +11,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: "https://github.com/langhoangtien/lifetek-docs",
   footer: {
-    text: "Lifetek Documentation",
+    content: <span>Lifetek Documentation</span>,
   },
 };
 

@@ -20,15 +20,15 @@ Authorization is the process of determining if a user has permission to perform 
 
 For hashing, we use the [argon2](https://www.npmjs.com/package/argon2) package, which is currently considered one of the most secure hashing algorithms. It is used primarily for hashing passwords before they are stored in the database. Here's a basic example of how to hash a password with argon2:
 
-```ts title="src/utils/password.util.ts"
-import argon2 from 'argon2';
+```ts filename="src/utils/password.util.ts" copy
+import argon2 from "argon2";
 
 export const hashPassword = async (password: string): Promise<string> => {
   try {
     return await argon2.hash(password);
   } catch (err) {
     console.error(err);
-    throw new Error('Can not hash password.');
+    throw new Error("Can not hash password.");
   }
 };
 ```
@@ -37,7 +37,7 @@ export const hashPassword = async (password: string): Promise<string> => {
 
 Helmet helps secure your NestJS apps by setting various HTTP headers. It's not a silver bullet, but it can help prevent some well-known web vulnerabilities by setting headers like X-Frame-Options, X-XSS-Protection, and Strict-Transport-Security. Simply add it to your NestJS app with minimal configuration:
 
-```ts title="src/main.ts"
+```ts filename="src/main.ts" copy
 ...
 import helmet from 'helmet';
 
@@ -55,7 +55,7 @@ async function bootstrap() {
 
 Cross-Origin Resource Sharing (CORS) is a security feature that restricts how resources on a web page can be requested from another domain outside the domain from which the first resource was served. In NestJS, you can enable CORS with the `enableCors` method. Here's an example of how to enable CORS with a specific origin:
 
-```ts title="src/main.ts"
+```ts filename="src/main.ts" copy
 ...
 import helmet from 'helmet';
 
@@ -84,7 +84,7 @@ Please note that enabling CORS with a wildcard (`*`) is not recommended for prod
 
 You need to set the `APP_CORS_ORIGIN` environment variable to the domain you want to allow requests from. For example, if you want to allow requests from `https://example.com`, you would set `APP_CORS_ORIGIN` to `https://example.com`.
 
-```env
+```env copy
 APP_CORS_ORIGIN=https://example.com
 ```
 
@@ -92,7 +92,7 @@ APP_CORS_ORIGIN=https://example.com
 
 Rate limiting is crucial for preventing abuse and ensuring that your service remains available to all users. Implement rate limiting using the express-rate-limit middleware:
 
-```ts title="src/main.ts"
+```ts filename="src/main.ts" copy
 ...
 ```
 
