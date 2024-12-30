@@ -1,25 +1,22 @@
 # syntax=docker.io/docker/dockerfile:1
 
+# Base image for Node.js
 FROM node:18-alpine AS base
+
+# Install pnpm globally in the base image
+RUN npm install -g pnpm
 
 # Install dependencies only when needed
 FROM base AS deps
-# Install pnpm globally
-RUN npm install -g pnpm
 WORKDIR /app
 
 # Install dependencies based on pnpm lockfile
 COPY package.json pnpm-lock.yaml* .npmrc* ./
-RUN \
-  if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; \
-  else echo "pnpm-lock.yaml not found." && exit 1; \
-  fi
+RUN pnpm install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
-# Install pnpm again in the builder stage
-RUN npm install -g pnpm
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
@@ -32,23 +29,22 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+# Create user and group for Next.js
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# Copy public assets
 COPY --from=builder /app/public ./public
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./ 
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Copy the entire .next directory to the production image
+COPY --from=builder /app/.next ./.next
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 3001
 
-ENV PORT=3000
-
-# server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
+ENV PORT=3001
 ENV HOSTNAME="0.0.0.0"
-CMD ["node", "server.js"]
+
+# Run the Next.js server
+CMD ["pnpm", "next", "start"]
