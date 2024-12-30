@@ -40,9 +40,9 @@ COPY --from=builder /app/.next ./.next
 
 USER nextjs
 
-EXPOSE 3001
+EXPOSE 3005
 
-ENV PORT=3001
+ENV PORT=3005
 ENV HOSTNAME="0.0.0.0"
 
 # Run the Next.js server

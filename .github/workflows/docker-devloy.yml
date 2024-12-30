@@ -61,4 +61,4 @@ jobs:
               docker rm lifetek-docs-container
             fi
             # Tạo container mới từ image vừa pull
-            docker run -d -p 3001:3001 --name lifetek-docs-container langhoangtien/lifetek-docs:${{ github.sha }}
+            docker run -d -p 3005:3005 --name lifetek-docs-container langhoangtien/lifetek-docs:${{ github.sha }}
