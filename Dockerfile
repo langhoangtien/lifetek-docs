@@ -15,10 +15,11 @@ RUN \
   else echo "pnpm-lock.yaml not found." && exit 1; \
   fi
 
-
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
+# Copy node_modules from the deps stage to ensure pnpm is available
+COPY --from=deps /usr/local/bin/pnpm /usr/local/bin/pnpm
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
