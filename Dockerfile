@@ -34,7 +34,6 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Copy public assets
-COPY --from=builder /app/public ./public
 
 # Copy the entire .next directory to the production image
 COPY --from=builder /app/.next ./.next
