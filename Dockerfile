@@ -4,7 +4,7 @@ FROM node:18-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-# Install pnpm (ensure it's the latest version)
+# Install pnpm globally
 RUN npm install -g pnpm
 WORKDIR /app
 
@@ -18,8 +18,8 @@ RUN \
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
-# Copy node_modules from the deps stage to ensure pnpm is available
-COPY --from=deps /usr/local/bin/pnpm /usr/local/bin/pnpm
+# Install pnpm again in the builder stage
+RUN npm install -g pnpm
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
