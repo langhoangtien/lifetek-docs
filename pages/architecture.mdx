@@ -6,21 +6,9 @@ This document describes the architecture of the project.
 
 [[toc]]
 
-## `.github/workflows`
+### `.gitlab-ci.yml`
 
-Here you can create and store yml files for each github action.
-
-### `check-semantic-prs.yml`
-
-Github action to check if the PR title is following the semantic commit message.
-
-### `ci.yml`
-
-Github action to run the test and build the project.
-
-### `deploy-docs.yml`
-
-Github action to deploy the documentation to the `gh-pages` branch.
+The file is the configuration file for GitLab CI/CD pipelines. It defines the stages, jobs, and scripts needed to automate tasks such as building, testing, and deploying applications.
 
 ## `.husky`
 
@@ -29,10 +17,6 @@ Husky is a tool to prevent bad git commit, git push, and more. See [the husky do
 ## `docs`
 
 Folder where we keep all our documentation files.
-
-### `.vuepress`
-
-Folder where we keep all our vuepress configuration files. See [the vuepress doc](https://vuepress.vuejs.org/) for more.
 
 ## `src`
 

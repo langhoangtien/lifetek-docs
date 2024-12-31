@@ -13,7 +13,7 @@ Ensure you have the following installed:
 
 ## Installation
 
-```bash
+```bash copy
 # Install dependencies from the package.json file.
 pnpm install
 ```
@@ -24,13 +24,13 @@ pnpm install
 
 Before running the app, create a `.env` file in the root directory by copying the `.env.example` file:
 
-```bash
+```bash copy
 cp .env.example .env
 ```
 
 ::: details Example `.env.example` file
 
-```env
+```env copy
 ##== Environment
 NODE_ENV=development
 MODULES_SET=monolith
@@ -47,11 +47,11 @@ APP_LOG_SERVICE=console
 APP_CORS_ORIGIN=http://localhost:3000,http://example.com
 
 ##== Database
-DATABASE_TYPE=postgres
+DATABASE_TYPE=oracle
 DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=postgres
+DATABASE_PORT=1521
+DATABASE_USERNAME=oracle
+DATABASE_PASSWORD=oracle
 DATABASE_NAME=nestjs_api
 DATABASE_LOGGING=true
 DATABASE_SYNCHRONIZE=false
@@ -106,7 +106,7 @@ AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN=1d
 
 #### Database variables
 
-- `DATABASE_TYPE`: The database type. Options: `mysql`, `postgres`.
+- `DATABASE_TYPE`: The database type. Options: `oracle`,`mysql`,`postgres`.
 - `DATABASE_HOST`: The database host.
 - `DATABASE_PORT`: The database port.
 - `DATABASE_USERNAME`: The database username.
@@ -153,7 +153,7 @@ For local development, you can use [MailDev](https://github.com/maildev/maildev)
 
 ### Running the project
 
-```bash
+```bash copy
 # Start the development server
 pnpm start
 
@@ -182,10 +182,10 @@ Download Docker Compose from [official website](https://docs.docker.com/compose/
 
 ### Running additional services
 
-To run additional services like the database, mail server, pgadmin, etc., use the `docker-compose` command:
+To run additional services like the database, mail server, apex, etc., use the `docker-compose` command:
 
-```bash
-docker compose up -d db maildev pgadmin
+```bash copy
+docker compose up -d db maildev oracle-apex
 ```
 
 ### Quick run
@@ -197,7 +197,7 @@ To start the application in watch mode for local development:
 1. Open your terminal and navigate to the project directory.
 2. Run the command:
 
-```bash
+```bash copy
 docker compose -f docker-compose.local.yml up --build -d
 ```
 
@@ -208,7 +208,7 @@ To run the application on a development server:
 1. Open your terminal and navigate to the project directory.
 2. Run the command:
 
-```bash
+```bash copy
 docker compose up --build -d
 ```
 
@@ -218,7 +218,7 @@ docker compose up --build -d
 
 To upgrade the dependencies to the latest version, run:
 
-```bash
+```bash copy
 # Upgrade dependencies to the latest version
 pnpm upgrade --interactive --latest
 ```
