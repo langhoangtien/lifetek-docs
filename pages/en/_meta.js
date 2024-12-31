@@ -1,5 +1,5 @@
 export default {
-  index: "Introduction",
+  introduction: "Introduction",
   development: "Setup & Development",
   technologies: "Technologies",
   architecture: "Architecture",

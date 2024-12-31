@@ -6,8 +6,8 @@ const LOGO_TEXT = {
   vi: "Tài liệu Lifetek",
 };
 const FEEDBACK_TEXT = {
-  en: { content: "Question? Give us feedback →", labels: "feedback" },
-  vi: { content: "Câu hỏi? Gửi phản hồi cho chúng tôi →", labels: "phản hồi" },
+  en: "Question? Give us feedback →",
+  vi: "Câu hỏi? Gửi phản hồi cho chúng tôi →",
 };
 const EDIT_TEXT = {
   en: "Edit this page on GitHub →",
@@ -39,7 +39,7 @@ const config: DocsThemeConfig = {
   feedback: {
     content: function useText() {
       const { locale } = useRouter();
-      return <span>{FEEDBACK_TEXT[locale!].content}</span>;
+      return <span>{FEEDBACK_TEXT[locale!]}</span>;
     },
     labels: "feedback",
     useLink() {

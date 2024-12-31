@@ -1,5 +1,5 @@
 export default {
-  index: "Giới thiệu",
+  introduction: "Giới thiệu",
   development: "Cài đặt & Phát triển",
   technologies: "Công nghệ",
   architecture: "Kiến trúc",
