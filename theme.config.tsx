@@ -4,12 +4,12 @@ import { DocsThemeConfig } from "nextra-theme-docs";
 const config: DocsThemeConfig = {
   logo: <span>Lifetek Documentation</span>,
   project: {
-    link: "https://github.com/langhoangtien/lifetek-docs",
+    link: "https://g.lifetek.vn",
   },
   chat: {
     link: "https://discord.com",
   },
-  docsRepositoryBase: "https://github.com/langhoangtien/lifetek-docs",
+  docsRepositoryBase: "https://g.lifetek.vn",
   footer: {
     content: <span>Lifetek Documentation</span>,
   },
