@@ -10,6 +10,10 @@ const withNextra = nextra({
 });
 
 export default withNextra({
+  i18n: {
+    locales: ["en", "vi"],
+    defaultLocale: "en",
+  },
   reactStrictMode: true,
   output: "standalone",
 });

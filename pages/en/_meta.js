@@ -1,5 +1,3 @@
-import { arch } from "os";
-
 export default {
   index: "Introduction",
   development: "Setup & Development",
