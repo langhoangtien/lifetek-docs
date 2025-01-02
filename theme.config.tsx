@@ -26,7 +26,7 @@ const logo = (
     y="0px"
     width="103px"
     viewBox="0 0 2735 857"
-    enable-background="new 0 0 2735 857"
+    enableBackground="new 0 0 2735 857"
   >
     <path
       fill="#EF4123"
