@@ -1,0 +1,39 @@
+## Setup & Development
+
+### Installation
+
+1. Create a new project:
+
+   ```git copy
+   git clone https://g.lifetek.vn/admin/frontend
+   ```
+
+2. Install required libraries:
+
+   ```bash copy
+   yarn
+   ```
+
+### Configuration
+
+Before running the app, create a `.env` file in the root directory by copying the `.env.example` file:
+
+```bash copy
+cp .env.example .env
+```
+
+details Example `.env.example` file
+
+```bash copy
+VITE_SERVER_URL=https://api.lifetek.dev/api/v1
+```
+
+#### Environment variables
+
+- `VITE_SERVER_URL`: Backend API url
+
+### Running the project
+
+```bash copy
+ yarn dev
+```

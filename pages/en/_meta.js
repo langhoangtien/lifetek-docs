@@ -1,20 +1,13 @@
 export default {
   introduction: "Introduction",
-  development: "Setup & Development",
-  technologies: "Technologies",
-  architecture: "Architecture",
+  "-- Lifetek Core": {
+    type: "separator",
+    title: "Lifetek Core",
+  },
 
-  "api-d": "API",
-  database: "Database",
-  security: "Security",
-  testing: "Testing",
-  benchmarking: "Benchmarking",
-  deployment: "Deployment",
-  troubleshooting: "Troubleshooting",
-  faq: "FAQ",
-
-  conventions: "Conventions",
-
+  "frontend-reactjs": "Frontend",
+  "backend-nestjs": "Backend",
+  "app-react-native": "Mobile App",
   about: {
     title: "About",
     type: "page",

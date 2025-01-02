@@ -1,0 +1,116 @@
+# Project Architecture
+
+This document describes the architecture of the **lifetek-frontend** project, highlighting its structure, modules, and responsibilities.
+
+---
+
+## Directory Structure
+
+The following is an overview of the key directories and files in the project:
+
+---
+
+```
+lifetek-frontend/
+├── public/ # Static assets like images, fonts, etc.
+└── src/ # Source code
+    ├── assets/ # Project assets (images, icons, etc.)
+    ├── auth/ # Authentication-related logic
+    ├── components/ # Reusable UI components
+    ├── hooks/ # Custom React hooks
+    ├── layouts/ # Layout components for structuring pages
+    ├── lib/ # Utility functions and libraries
+    ├── pages/ # Page components (route views)
+    ├── routes/ # Routing definitions
+    ├── sections/ # Page sections (composed UI components)
+    ├── utils/ # Helper functions and utilities
+├── .env # Environment variables
+├── .gitlab-ci.yml # GitLab CI/CD pipeline configuration
+├── tailwind.config.js # Tailwind CSS configuration
+├── tsconfig.json # TypeScript configuration
+└── vite.config.ts # Vite build tool configuration
+```
+
+## Key Modules
+
+### **`app/`**
+
+- Encapsulates global state, providers, and context management for the application.
+
+### **`assets/`**
+
+- Stores project-specific assets, including images and icons.
+
+### **`auth/`**
+
+- Contains authentication logic for login, registration, and session management.
+
+### **`components/`**
+
+- Houses reusable UI components such as buttons, modals, and form elements.
+- Promotes consistency and reusability across the application.
+
+### **`hooks/`**
+
+- Contains custom React hooks to encapsulate reusable logic, such as API calls or state management.
+
+### **`layouts/`**
+
+- Defines the structure and layout of pages, including headers, footers, and sidebars.
+
+### **`lib/`**
+
+- Stores shared utility functions and third-party integrations.
+
+### **`locales/`**
+
+- Contains language files for internationalization (i18n).
+
+### **`pages/`**
+
+- Represents the application's main views, each corresponding to a route.
+
+### **`routes/`**
+
+- Manages routing logic for the application, such as dynamic and static routes.
+
+### **`sections/`**
+
+- High-level sections that combine smaller components, used to build pages.
+
+### **`utils/`**
+
+- General-purpose utility functions for tasks like formatting, validation, or API responses.
+
+---
+
+## Core Configuration Files
+
+### **`.gitlab-ci.yml`**
+
+- Automates CI/CD pipelines for testing, building, and deploying the project.
+
+### **`vite.config.ts`**
+
+- Configures Vite for the build process, including plugins and aliases.
+
+### **`tailwind.config.js`**
+
+- Customizes Tailwind CSS for consistent styling across the project.
+
+### **`postcss.config.js`**
+
+- Integrates PostCSS plugins for advanced CSS processing.
+
+---
+
+## Deployment Notes
+
+- The production-ready build is generated in the `dist/` directory and can be deployed using web servers like **Nginx** or **Apache**.
+- Environment-specific configurations should be managed using the `.env` file.
+
+---
+
+## Conclusion
+
+This architecture emphasizes modularity, scalability, and maintainability, providing a robust foundation for frontend development. Adjustments or enhancements can easily be incorporated without compromising the overall structure.
