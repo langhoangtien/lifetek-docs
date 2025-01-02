@@ -1,57 +1,63 @@
-# Deployment
+# Triển Khai
 
-This document outlines the steps required to deploy the application to a production environment.
+Tài liệu này mô tả các bước cần thiết để triển khai ứng dụng lên môi trường sản xuất.
 
 ---
 
 [[toc]]
 
-## Prerequisites
+## Yêu Cầu Trước Khi Triển Khai
 
-- Access to the production server
-- Necessary credentials for database and other services
-- The latest version of the application code
+- Quyền truy cập vào máy chủ sản xuất
+- Thông tin đăng nhập cần thiết cho cơ sở dữ liệu và các dịch vụ khác
+- Phiên bản mới nhất của mã nguồn ứng dụng
 
-## Steps
+## Các Bước Triển Khai
 
-1. **Prepare the Environment**:
-   - Ensure the production server is running and accessible.
-   - Verify that all required software is installed on the server.
+1. **Chuẩn Bị Môi Trường**:
 
-2. **Upload the Application**:
-   - Use SCP or FTP to transfer the application files to the server.
-   - Place the files in the appropriate directory.
+   - Đảm bảo máy chủ sản xuất đang hoạt động và có thể truy cập được.
+   - Kiểm tra xem tất cả phần mềm yêu cầu đã được cài đặt trên máy chủ hay chưa.
 
-3. **Configure the Application**:
-   - Copy the `.env.production` file to the server, if applicable.
-   - Update any environment-specific configuration settings.
+2. **Tải Lên Ứng Dụng**:
 
-4. **Set Up the Database**:
-   - Create the production database, if not already set up.
-   - Run migrations and seed the database with any necessary data.
+   - Sử dụng SCP hoặc FTP để chuyển các tệp ứng dụng lên máy chủ.
+   - Đặt các tệp vào thư mục phù hợp.
 
-5. **Start the Application**:
-   - Depending on the application, this might involve starting a web server, a background job processor, etc.
-   - Ensure that all services are running as expected.
+3. **Cấu Hình Ứng Dụng**:
 
-6. **Verify the Deployment**:
-   - Access the application through its public URL to ensure it's running correctly.
-   - Check application logs for any errors or warnings.
+   - Sao chép tệp `.env.production` lên máy chủ, nếu cần.
+   - Cập nhật bất kỳ cấu hình cụ thể cho môi trường.
 
-7. **Monitor the Application**:
-   - Set up monitoring and alerting tools to keep track of the application's health and performance.
+4. **Thiết Lập Cơ Sở Dữ Liệu**:
 
-## CI/CD Pipeline
+   - Tạo cơ sở dữ liệu sản xuất, nếu chưa được thiết lập.
+   - Chạy các migration và khởi tạo dữ liệu cần thiết cho cơ sở dữ liệu.
 
-// TODO: Add details on setting up a CI/CD pipeline for automated deployments.
+5. **Khởi Động Ứng Dụng**:
 
-## Rollback Plan
+   - Tùy thuộc vào ứng dụng, có thể cần khởi động máy chủ web, bộ xử lý công việc nền, v.v.
+   - Đảm bảo tất cả các dịch vụ đang chạy như mong đợi.
 
-In case of any issues, have a rollback plan ready:
+6. **Xác Nhận Triển Khai**:
 
-- Keep the previous version of the application ready for deployment.
-- Ensure database backups are taken before the deployment, to restore if necessary.
+   - Truy cập ứng dụng qua URL công cộng để đảm bảo ứng dụng hoạt động đúng.
+   - Kiểm tra các log của ứng dụng để phát hiện lỗi hoặc cảnh báo.
 
-## Conclusion
+7. **Giám Sát Ứng Dụng**:
+   - Thiết lập các công cụ giám sát và cảnh báo để theo dõi tình trạng và hiệu suất của ứng dụng.
 
-Following these steps will help ensure a smooth deployment process. Always test thoroughly in a staging environment before deploying to production.
+## Quy Trình CI/CD
+
+// TODO: Thêm chi tiết về việc thiết lập quy trình CI/CD để triển khai tự động.
+
+## Kế Hoạch Rollback
+
+Trong trường hợp có sự cố, hãy chuẩn bị kế hoạch quay lại (rollback):
+
+- Giữ phiên bản trước của ứng dụng sẵn sàng để triển khai.
+- Đảm bảo sao lưu cơ sở dữ liệu trước khi triển khai, để khôi phục nếu cần.
+
+## Kết Luận
+
+Việc làm theo các bước này sẽ giúp đảm bảo quá trình triển khai diễn ra suôn sẻ. Hãy luôn thử nghiệm kỹ lưỡng trên môi trường staging trước khi triển khai lên môi trường sản xuất.

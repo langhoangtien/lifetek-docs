@@ -1,34 +1,39 @@
-# Setup & Development
+import { Callout } from "nextra/components";
 
-This guide explains how to set up the project and start the development server.
+# Thiết Lập & Phát Triển
+
+Hướng dẫn này giải thích cách thiết lập dự án và khởi động máy chủ phát triển.
 
 [[toc]]
 
-## Prerequisites
+## Yêu Cầu Trước Khi Cài Đặt
 
-Ensure you have the following installed:
+Hãy chắc chắn rằng bạn đã cài đặt các công cụ sau:
 
-- [Node.js](https://nodejs.org/en) version >= `20.10.0`
-- [Pnpm](https://pnpm.io/installation) version >= `9.5.0`
+- [Node.js](https://nodejs.org/en) phiên bản >= `20.10.0`
+- [Pnpm](https://pnpm.io/installation) phiên bản >= `9.5.0`
 
-## Installation
+## Cài Đặt
 
 ```bash copy
 # Install dependencies from the package.json file.
 pnpm install
 ```
 
-> Note: Don't delete the `pnpm-lock.yaml` file. It's used to lock the dependencies version.
+<Callout>
+  > Lưu ý: Đừng xóa tệp `pnpm-lock.yaml`. Nó được sử dụng để khóa phiên bản của
+  các phụ thuộc.
+</Callout>
 
-### Configuration
+### Cấu Hình
 
-Before running the app, create a `.env` file in the root directory by copying the `.env.example` file:
+Trước khi chạy ứng dụng, hãy tạo tệp `.env` trong thư mục gốc bằng cách sao chép tệp `.env.example`:
 
 ```bash copy
 cp .env.example .env
 ```
 
-::: details Example `.env.example` file
+::: Chi tiết file `.env.example` file
 
 ```env copy
 ##== Environment
@@ -87,71 +92,71 @@ AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN=1d
 
 :::
 
-#### Environment variables
+#### Biến Môi Trường
 
-- `NODE_ENV`: The environment mode. Options: `local`, `development`, `staging`, `production`, `test`.
-- `MODULES_SET`: The modules set to load. Options: `monolith`, `api`.
+- `NODE_ENV`: Chế độ môi trường. Các giá trị có thể là: `local`, `development`, `staging`, `production`, `test`.
+- `MODULES_SET`: Các module sẽ được tải. Các giá trị có thể là: `monolith`, `api`.
 
-#### Application variables
+#### Biến Ứng Dụng
 
-- `APP_NAME`: The application name.
-- `APP_URL`: The base API URL, including protocol and port, used for generating Swagger documentation and health checks.
-- `APP_PORT`: The application port.
-- `APP_DEBUG`: Debug mode. Shows stack trace in the response. Options: `true`, `false`.
-- `API_PREFIX`: The API prefix, used to group the API routes. Should be a string without a leading `/`.
-- `APP_FALLBACK_LANGUAGE`: The fallback language used when the requested language is not supported.
-- `APP_LOG_LEVEL`: The log level. Options: `fatal`, `error`, `warn`, `info`, `debug`, `trace` or `silent`.
-- `APP_LOG_SERVICE`: The log service. Options: `console`, `google_logging`, `aws_cloudwatch`.
-- `APP_CORS_ORIGIN`: The CORS origin, allowing requests from specified origins. Options: comma-separated string (e.g., `http://localhost:3000,http://example.com`), `true`, `false`, `*`.
+- `APP_NAME`: Tên ứng dụng.
+- `APP_URL`: URL API cơ bản, bao gồm giao thức và cổng, được sử dụng để tạo tài liệu Swagger và kiểm tra tình trạng hệ thống.
+- `APP_PORT`: Cổng ứng dụng.
+- `APP_DEBUG`: Chế độ gỡ lỗi. Hiển thị stack trace trong phản hồi. Các giá trị có thể là: `true`, `false`.
+- `API_PREFIX`: Tiền tố API, dùng để nhóm các tuyến đường API. Nên là một chuỗi không có dấu `/` ở đầu.
+- `APP_FALLBACK_LANGUAGE`: Ngôn ngữ dự phòng sử dụng khi ngôn ngữ yêu cầu không được hỗ trợ.
+- `APP_LOG_LEVEL`: Mức độ ghi log. Các giá trị có thể là: `fatal`, `error`, `warn`, `info`, `debug`, `trace`, hoặc `silent`.
+- `APP_LOG_SERVICE`: Dịch vụ ghi log. Các giá trị có thể là: `console`, `google_logging`, `aws_cloudwatch`.
+- `APP_CORS_ORIGIN`: Nguồn gốc CORS, cho phép các yêu cầu từ các nguồn gốc cụ thể. Các giá trị có thể là: chuỗi phân cách bằng dấu phẩy (ví dụ: `http://localhost:3000,http://example.com`), `true`, `false`, `*`.
 
-#### Database variables
+#### Biến Cơ Sở Dữ Liệu
 
-- `DATABASE_TYPE`: The database type. Options: `oracle`,`mysql`,`postgres`.
-- `DATABASE_HOST`: The database host.
-- `DATABASE_PORT`: The database port.
-- `DATABASE_USERNAME`: The database username.
-- `DATABASE_PASSWORD`: The database password.
-- `DATABASE_NAME`: The database name.
-- `DATABASE_LOGGING`: Database logging. Options: `true`, `false`.
-- `DATABASE_SYNCHRONIZE`: Synchronize the database schema. Options: `true`, `false`.
-- `DATABASE_MAX_CONNECTIONS`: Maximum database connections.
-- `DATABASE_SSL_ENABLED`: Enable SSL for database. Options: `true`, `false`.
-- `DATABASE_REJECT_UNAUTHORIZED`: Reject unauthorized database connections. Options: `true`, `false`.
-- `DATABASE_CA`: The database CA certificate. Optional for local development.
-- `DATABASE_KEY`: The database key. Optional for local development.
-- `DATABASE_CERT`: The database certificate. Optional for local development.
+- `DATABASE_TYPE`: Loại cơ sở dữ liệu. Các giá trị có thể là: `oracle`, `mysql`, `postgres`.
+- `DATABASE_HOST`: Máy chủ cơ sở dữ liệu.
+- `DATABASE_PORT`: Cổng cơ sở dữ liệu.
+- `DATABASE_USERNAME`: Tên người dùng cơ sở dữ liệu.
+- `DATABASE_PASSWORD`: Mật khẩu cơ sở dữ liệu.
+- `DATABASE_NAME`: Tên cơ sở dữ liệu.
+- `DATABASE_LOGGING`: Ghi log cơ sở dữ liệu. Các giá trị có thể là: `true`, `false`.
+- `DATABASE_SYNCHRONIZE`: Đồng bộ hóa sơ đồ cơ sở dữ liệu. Các giá trị có thể là: `true`, `false`.
+- `DATABASE_MAX_CONNECTIONS`: Số kết nối tối đa cơ sở dữ liệu.
+- `DATABASE_SSL_ENABLED`: Bật SSL cho cơ sở dữ liệu. Các giá trị có thể là: `true`, `false`.
+- `DATABASE_REJECT_UNAUTHORIZED`: Từ chối các kết nối cơ sở dữ liệu không được phép. Các giá trị có thể là: `true`, `false`.
+- `DATABASE_CA`: Chứng chỉ CA của cơ sở dữ liệu. Tùy chọn cho phát triển cục bộ.
+- `DATABASE_KEY`: Khóa cơ sở dữ liệu. Tùy chọn cho phát triển cục bộ.
+- `DATABASE_CERT`: Chứng chỉ cơ sở dữ liệu. Tùy chọn cho phát triển cục bộ.
 
-> Note: The `DATABASE_CA`, `DATABASE_KEY`, and `DATABASE_CERT` variables are required for secure connections. For local development, you can skip these variables.
+> Lưu ý: Các biến `DATABASE_CA`, `DATABASE_KEY`, và `DATABASE_CERT` là cần thiết cho các kết nối bảo mật. Đối với phát triển cục bộ, bạn có thể bỏ qua các biến này.
 
-Follow the [Docker](#running-additional-services) section to set up the database using Docker.
+Hãy làm theo phần [Docker](#running-additional-services) để thiết lập cơ sở dữ liệu sử dụng Docker.
 
-#### Mailer variables
+#### Biến Mailer
 
-- `MAIL_HOST`: The mail server host.
-- `MAIL_PORT`: The mail server port.
-- `MAIL_USER`: The mail server username.
-- `MAIL_PASSWORD`: The mail server password.
-- `MAIL_IGNORE_TLS`: Ignore TLS for the mail server. Options: `true`, `false`.
-- `MAIL_SECURE`: Secure the mail server connection. Options: `true`, `false`.
-- `MAIL_REQUIRE_TLS`: Require TLS for the mail server. Options: `true`, `false`.
-- `MAIL_DEFAULT_EMAIL`: The default email address.
-- `MAIL_DEFAULT_NAME`: The default email name.
-- `MAIL_CLIENT_PORT`: The mail client port. Used for testing with maildev.
+- `MAIL_HOST`: Máy chủ email.
+- `MAIL_PORT`: Cổng máy chủ email.
+- `MAIL_USER`: Tên người dùng máy chủ email.
+- `MAIL_PASSWORD`: Mật khẩu máy chủ email.
+- `MAIL_IGNORE_TLS`: Bỏ qua TLS cho máy chủ email. Các giá trị có thể là: `true`, `false`.
+- `MAIL_SECURE`: Bảo mật kết nối máy chủ email. Các giá trị có thể là: `true`, `false`.
+- `MAIL_REQUIRE_TLS`: Yêu cầu TLS cho máy chủ email. Các giá trị có thể là: `true`, `false`.
+- `MAIL_DEFAULT_EMAIL`: Địa chỉ email mặc định.
+- `MAIL_DEFAULT_NAME`: Tên email mặc định.
+- `MAIL_CLIENT_PORT`: Cổng máy khách email. Dùng cho kiểm tra với maildev.
 
-For local development, you can use [MailDev](https://github.com/maildev/maildev) as a fake SMTP server. It's included in the Docker Compose file. Follow the [Docker](#running-additional-services) section to set up MailDev.
+Đối với phát triển cục bộ, bạn có thể sử dụng [MailDev](https://github.com/maildev/maildev) như một máy chủ SMTP giả. Nó đã được bao gồm trong tệp Docker Compose. Hãy làm theo phần [Docker](#running-additional-services) để thiết lập MailDev.
 
-#### Authentication variables
+#### Biến Xác Thực
 
-- `AUTH_JWT_SECRET`: The JWT secret key.
-- `AUTH_JWT_TOKEN_EXPIRES_IN`: JWT token expiration time (e.g., `15m`, `1h`, `1d`, `365d`). Should be short for security.
-- `AUTH_REFRESH_SECRET`: The refresh token secret key.
-- `AUTH_REFRESH_TOKEN_EXPIRES_IN`: Refresh token expiration time. Should be long for user convenience.
-- `AUTH_FORGOT_SECRET`: The forgot password token secret key.
-- `AUTH_FORGOT_TOKEN_EXPIRES_IN`: Forgot password token expiration time. Should be short for security.
-- `AUTH_CONFIRM_EMAIL_SECRET`: The email confirmation token secret key.
-- `AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN`: Email confirmation token expiration time. Should be short for security.
+- `AUTH_JWT_SECRET`: Khóa bí mật JWT.
+- `AUTH_JWT_TOKEN_EXPIRES_IN`: Thời gian hết hạn của token JWT (ví dụ: `15m`, `1h`, `1d`, `365d`). Nên ngắn để bảo mật.
+- `AUTH_REFRESH_SECRET`: Khóa bí mật refresh token.
+- `AUTH_REFRESH_TOKEN_EXPIRES_IN`: Thời gian hết hạn của refresh token. Nên dài để thuận tiện cho người dùng.
+- `AUTH_FORGOT_SECRET`: Khóa bí mật của token quên mật khẩu.
+- `AUTH_FORGOT_TOKEN_EXPIRES_IN`: Thời gian hết hạn của token quên mật khẩu. Nên ngắn để bảo mật.
+- `AUTH_CONFIRM_EMAIL_SECRET`: Khóa bí mật của token xác nhận email.
+- `AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN`: Thời gian hết hạn của token xác nhận email. Nên ngắn để bảo mật.
 
-### Running the project
+### Khỏi chạy dự án
 
 ```bash copy
 # Start the development server
@@ -166,23 +171,23 @@ pnpm start:debug
 
 ## Docker
 
-Set up your application and database effortlessly using [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose).
+Thiết lập ứng dụng và cơ sở dữ liệu dễ dàng với [Docker](https://www.docker.com/) và [Docker Compose](https://docs.docker.com/compose).
 
-### Installing Docker
+### Cài Đặt Docker
 
-Get Docker from the official site for your operating system:
+Tải Docker từ trang chính thức cho hệ điều hành của bạn:
 
-- Mac: [Install Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
-- Windows: [Install Docker for Windows](https://docs.docker.com/docker-for-windows/install/)
-- Ubuntu: [Install Docker on Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+- Mac: [Cài Docker cho Mac](https://docs.docker.com/docker-for-mac/install/)
+- Windows: [Cài Docker cho Windows](https://docs.docker.com/docker-for-windows/install/)
+- Ubuntu: [Cài Docker trên Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
-### Installing Docker Compose
+### Cài Đặt Docker Compose
 
-Download Docker Compose from [official website](https://docs.docker.com/compose/install).
+Tải Docker Compose từ [trang chính thức](https://docs.docker.com/compose/install).
 
-### Running additional services
+### Chạy Các Dịch Vụ Bổ Sung
 
-To run additional services like the database, mail server, apex, etc., use the `docker-compose` command:
+Để chạy các dịch vụ bổ sung như cơ sở dữ liệu, máy chủ mail, apex, v.v., sử dụng lệnh `docker-compose`:
 
 ```bash copy
 docker compose up -d db maildev oracle-apex
@@ -190,33 +195,35 @@ docker compose up -d db maildev oracle-apex
 
 ### Quick run
 
-#### Running the app in Watch Mode (Local Development)
+#### Chạy ứng dụng ở chế độ giám sát (development)
 
-To start the application in watch mode for local development:
+Để bắt đầu ứng dụng ở chế độ giám sát cho development local:
 
-1. Open your terminal and navigate to the project directory.
-2. Run the command:
+1. Mở terminal và chuyển đến thư mục dự án..
+2. Chạy lệnh:
 
 ```bash copy
 docker compose -f docker-compose.local.yml up --build -d
 ```
 
-#### Running the app in Development Mode
+#### Chạy ứng dụng ở Chế Độ Phát Triển
 
-To run the application on a development server:
+Để chạy ứng dụng trên máy chủ phát triển:
 
-1. Open your terminal and navigate to the project directory.
-2. Run the command:
+1. Mở terminal và chuyển đến thư mục dự án.
+2. Chạy lệnh:
 
 ```bash copy
 docker compose up --build -d
 ```
 
-> Note: The application will run on port 3000 [Localhost](http://localhost:3000)
+<Callout>
+  > Lưu ý: Ứng dụng sẽ chạy trên cổng 3000 [Localhost](http://localhost:3000)
+</Callout>
 
-## Upgrade
+## Nâng Cấp
 
-To upgrade the dependencies to the latest version, run:
+Để nâng cấp các phụ thuộc lên phiên bản mới nhất, chạy lệnh:
 
 ```bash copy
 # Upgrade dependencies to the latest version

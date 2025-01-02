@@ -1,12 +1,12 @@
-# Project Architecture
+# Kiến Trúc Dự Án
 
-This document describes the architecture of the **lifetek-frontend** project, highlighting its structure, modules, and responsibilities.
+Tài liệu này mô tả kiến trúc của dự án **lifetek-frontend**, nêu bật cấu trúc, các module và trách nhiệm của chúng.
 
 ---
 
-## Directory Structure
+## Cấu Trúc Thư Mục
 
-The following is an overview of the key directories and files in the project:
+Dưới đây là cái nhìn tổng quan về các thư mục và tệp chính trong dự án:
 
 ---
 
@@ -31,86 +31,86 @@ lifetek-frontend/
 └── vite.config.ts # Vite build tool configuration
 ```
 
-## Key Modules
+## Các Module Chính
 
 ### **`app/`**
 
-- Encapsulates global state, providers, and context management for the application.
+- Bao gồm trạng thái toàn cục, các provider và quản lý context cho ứng dụng.
 
 ### **`assets/`**
 
-- Stores project-specific assets, including images and icons.
+- Lưu trữ các tài nguyên đặc trưng của dự án, bao gồm hình ảnh và biểu tượng.
 
 ### **`auth/`**
 
-- Contains authentication logic for login, registration, and session management.
+- Chứa logic xác thực cho đăng nhập, đăng ký và quản lý phiên làm việc.
 
 ### **`components/`**
 
-- Houses reusable UI components such as buttons, modals, and form elements.
-- Promotes consistency and reusability across the application.
+- Lưu trữ các thành phần UI có thể tái sử dụng như nút bấm, modal và các phần tử form.
+- Khuyến khích tính nhất quán và tái sử dụng trong toàn bộ ứng dụng.
 
 ### **`hooks/`**
 
-- Contains custom React hooks to encapsulate reusable logic, such as API calls or state management.
+- Chứa các hook React tùy chỉnh để bao encapsulate các logic tái sử dụng, như gọi API hoặc quản lý trạng thái.
 
 ### **`layouts/`**
 
-- Defines the structure and layout of pages, including headers, footers, and sidebars.
+- Định nghĩa cấu trúc và layout của các trang, bao gồm header, footer và sidebar.
 
 ### **`lib/`**
 
-- Stores shared utility functions and third-party integrations.
+- Lưu trữ các hàm tiện ích chung và các tích hợp của bên thứ ba.
 
 ### **`locales/`**
 
-- Contains language files for internationalization (i18n).
+- Chứa các tệp ngôn ngữ phục vụ cho quốc tế hóa (i18n).
 
 ### **`pages/`**
 
-- Represents the application's main views, each corresponding to a route.
+- Đại diện cho các view chính của ứng dụng, mỗi view tương ứng với một route.
 
 ### **`routes/`**
 
-- Manages routing logic for the application, such as dynamic and static routes.
+- Quản lý logic routing cho ứng dụng, bao gồm các route động và tĩnh.
 
 ### **`sections/`**
 
-- High-level sections that combine smaller components, used to build pages.
+- Các section cấp cao kết hợp các thành phần nhỏ hơn, được sử dụng để xây dựng các trang.
 
 ### **`utils/`**
 
-- General-purpose utility functions for tasks like formatting, validation, or API responses.
+- Các hàm tiện ích đa năng cho các tác vụ như định dạng, xác thực hoặc phản hồi API.
 
 ---
 
-## Core Configuration Files
+## Các Tệp Cấu Hình Cơ Bản
 
 ### **`.gitlab-ci.yml`**
 
-- Automates CI/CD pipelines for testing, building, and deploying the project.
+- Tự động hóa các pipeline CI/CD cho việc kiểm thử, build và triển khai dự án.
 
 ### **`vite.config.ts`**
 
-- Configures Vite for the build process, including plugins and aliases.
+- Cấu hình Vite cho quá trình build, bao gồm các plugin và alias.
 
 ### **`tailwind.config.js`**
 
-- Customizes Tailwind CSS for consistent styling across the project.
+- Tùy chỉnh Tailwind CSS để đảm bảo phong cách đồng nhất trên toàn dự án.
 
 ### **`postcss.config.js`**
 
-- Integrates PostCSS plugins for advanced CSS processing.
+- Tích hợp các plugin PostCSS để xử lý CSS nâng cao.
 
 ---
 
-## Deployment Notes
+## Ghi Chú Triển Khai
 
-- The production-ready build is generated in the `dist/` directory and can be deployed using web servers like **Nginx** or **Apache**.
-- Environment-specific configurations should be managed using the `.env` file.
+- Build sẵn sàng cho sản xuất được tạo trong thư mục `dist/` và có thể triển khai sử dụng các máy chủ web như **Nginx** hoặc **Apache**.
+- Cấu hình riêng cho từng môi trường nên được quản lý thông qua tệp `.env`.
 
 ---
 
-## Conclusion
+## Kết Luận
 
-This architecture emphasizes modularity, scalability, and maintainability, providing a robust foundation for frontend development. Adjustments or enhancements can easily be incorporated without compromising the overall structure.
+Kiến trúc này nhấn mạnh tính mô-đun, khả năng mở rộng và bảo trì, cung cấp một nền tảng vững chắc cho việc phát triển frontend. Các điều chỉnh hoặc cải tiến có thể dễ dàng được tích hợp mà không làm ảnh hưởng đến cấu trúc tổng thể.

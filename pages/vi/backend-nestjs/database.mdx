@@ -1,18 +1,18 @@
-# Work with database
+# Làm Việc Với Cơ Sở Dữ Liệu
 
-We use [TypeORM](https://typeorm.io/) as an ORM for working with databases. It supports MySQL, PostgreSQL, MariaDB, SQLite, MS SQL Server, Oracle, WebSQL databases.
+Chúng tôi sử dụng [TypeORM](https://typeorm.io/) làm ORM để làm việc với các cơ sở dữ liệu. Nó hỗ trợ MySQL, PostgreSQL, MariaDB, SQLite, MS SQL Server, Oracle, WebSQL.
 
-For seeding data, we use [typeorm-extension](https://github.com/tada5hi/typeorm-extension) package.
+Để seed dữ liệu, chúng tôi sử dụng gói [typeorm-extension](https://github.com/tada5hi/typeorm-extension).
 
 ---
 
 [[toc]]
 
-## Working with database entity (TypeORM)
+## Làm Việc Với Entity Cơ Sở Dữ Liệu (TypeORM)
 
-### Generate migration
+### Tạo Migration
 
-1. Create entity file with extension `.entity.ts`. For example `post.entity.ts`:
+1. Tạo tệp entity với phần mở rộng `.entity.ts`. Ví dụ `post.entity.ts`:
 
    ```typescript copy
    // /src/api/post/entities/post.entity.ts
@@ -34,27 +34,27 @@ For seeding data, we use [typeorm-extension](https://github.com/tada5hi/typeorm-
    }
    ```
 
-1. Next, generate migration file:
+1. Tiếp theo, tạo tệp migration:
 
    ```bash copy
    pnpm migration:generate src/database/migrations/create-post-table
    ```
 
-1. Apply this migration to database via [pnpm migration:up](#run-migration).
+1. Áp dụng migration này vào cơ sở dữ liệu qua lệnh [pnpm migration:up](#run-migration).
 
-### Show migration
+### Hiển thị migration
 
 ```bash copy
 pnpm migration:show
 ```
 
-### Run migration
+### Để áp dụng các migration
 
 ```bash copy
 pnpm migration:up
 ```
 
-### Revert migration
+### Hoàn tác migration
 
 ```bash copy
 pnpm migration:down
@@ -62,15 +62,15 @@ pnpm migration:down
 
 ## Seeding (TypeORM)
 
-### Creating seed file
+### Tạo file seed
 
-1. Create seed file with `pnpm seed:create` command:
+1. Tạo file seed bằng lệnh `pnpm seed:create`:
 
    ```bash copy
    pnpm seed:create -n src/database/seeds/post-seeder
    ```
 
-2. Go to `src/database/seeds/xxxtimestampxxx-post-seeder.ts` and write your seed data:
+2. Mở file `src/database/seeds/xxxtimestampxxx-post-seeder.ts` và tạo dữ liệu:
 
    ```typescript copy
    // /src/database/seeds/xxxtimestampxxx-post-seeder.ts
@@ -101,9 +101,9 @@ pnpm migration:down
    }
    ```
 
-   In `run` method extend your logic, you can use repository or factory to create data.
+   Trong lệnh `run` bạn có thể sử dụng repository hoặc factory để tạo dữ liệu.
 
-3. Apply this seed to database via `pnpm seed:run`.
+3. Áp dụng thêm dữ liệu vào database bằng lệnh `pnpm seed:run`.
 
 ### Running seed
 
@@ -113,11 +113,10 @@ pnpm seed:run
 
 ### Factory and Faker
 
-To create entities with random data, create a factory for each desired entity. The definition of a factory is **optional**. If you don't define a factory, the seeder will use the repository to create entities.
+Để tạo các thực thể với dữ liệu ngẫu nhiên, bạn cần tạo một factory cho mỗi thực thể mong muốn. Việc định nghĩa factory là tùy chọn. Nếu bạn không định nghĩa một factory, seeder sẽ sử dụng repository để tạo các thực thể.
+Hàm callback của factory cung cấp một thể hiện của thư viện [faker](https://fakerjs.dev/guide/) dưới dạng tham số hàm, để điền dữ liệu ngẫu nhiên vào thực thể.
 
-The factory callback provides an instance of the [faker](https://fakerjs.dev/guide/) library as function argument, to populate the entity with random data.
-
-1. Create factory file at `src/database/factories/post.factory.ts`:
+1. Tạo factory file at `src/database/factories/post.factory.ts`:
 
    ```typescript copy
    import { PostEntity } from "@/api/post/entities/post.entity";
@@ -132,7 +131,7 @@ The factory callback provides an instance of the [faker](https://fakerjs.dev/gui
    });
    ```
 
-2. Use factory in `src/database/seeds/xxxtimestampxxx-post-seeder.ts`
+2. Sử dụng factory in `src/database/seeds/xxxtimestampxxx-post-seeder.ts`
 3. Run seed:
 
    ```bash copy

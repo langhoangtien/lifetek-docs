@@ -1,53 +1,53 @@
-# Commit conventions
+# Quy ước Commit
 
-We use convention at [here](https://www.conventionalcommits.org/en/v1.0.0/)
+Chúng tôi sử dụng quy ước tại [đây](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ---
 
 [[toc]]
 
-## Commit messages must be matched by the following regex
+## Commit messages phải khớp với regex sau
 
 ```js
 /^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)\(?[a-zA-Z0-9-]{0,20}\)?:\s[a-zA-Z0-9-_#\/\s]{1,49}[a-zA-Z0-9]$/;
 ```
 
-## Format
+## Định dạng
 
 ```txt
 <type>(<scope>?): <subject>
 ```
 
-1. `"type"` must be one of the following types
+1. `"type"` phải là một trong các loại sau
 
-   - `build`: changes that affect the build system or external dependencies
-   - `chore`: changes that don't modify the logic or test code
-   - `ci`: changes to our CI configuration files and scripts
-   - `docs`: documentation only changes (add/update/delete)
-   - `feat`: to add/update/delete a feature
-   - `fix`: to fix a normal bug, critical bug (maybe refactor that code)
-   - `perf`: to improve performance
-   - `refactor`: a code change that neither fixes a bug nor adds a feature
-   - `revert`: to revert a previous commit
-   - `style`: changes that do not affect the meaning of the code (whitespace, formatting, missing semi-colons, etc.)
-   - `test`: adding missing tests or correcting existing tests
+   - `build`: thay đổi ảnh hưởng đến hệ thống build hoặc các phụ thuộc bên ngoài
+   - `chore`: thay đổi không thay đổi logic hoặc mã kiểm thử
+   - `ci`: thay đổi cấu hình và script của CI
+   - `docs`: thay đổi chỉ liên quan đến tài liệu (thêm/cập nhật/xóa)
+   - `feat`: thêm/cập nhật/xóa một tính năng
+   - `fix`: sửa lỗi thông thường, lỗi nghiêm trọng (có thể là tái cấu trúc mã)
+   - `perf`: cải thiện hiệu suất
+   - `refactor`: thay đổi mã không sửa lỗi hay thêm tính năng
+   - `revert`: hoàn tác một commit trước đó
+   - `style`: thay đổi không ảnh hưởng đến ý nghĩa của mã (khoảng trắng, định dạng, thiếu dấu chấm phẩy, v.v.)
+   - `test`: thêm các bài kiểm tra bị thiếu hoặc sửa chữa các bài kiểm tra hiện tại
 
-2. `"scope"` (optional)
+2. `"scope"` (tùy chọn)
 
-   The scope must be noun and it represents the section of the section of the codebase
+   Scope phải là danh từ và nó đại diện cho phần của codebase
 
 3. `"subject"`
 
-   The subject contains a short description of the change
+   Subject chứa mô tả ngắn gọn về thay đổi
 
-   - use the imperative, present tense (use "add" instead of "added" or "adds")
-   - don't capitalize the first letter
-   - no dot (.) at the end
-   - is one of the following types
-     - ticket: `<ticket No> <a short description>`
-     - some special tasks (no ticket) such as documentation, building or refactoring the source code: `<a short description>`
+   - sử dụng thể mệnh lệnh, thời hiện tại (sử dụng "add" thay vì "added" hoặc "adds")
+   - không viết hoa chữ cái đầu tiên
+   - không có dấu chấm (.) ở cuối
+   - là một trong các loại sau
+     - ticket: `<mã ticket> <mô tả ngắn>`
+     - một số công việc đặc biệt (không có ticket) như tài liệu, build, hoặc tái cấu trúc mã nguồn: `<mô tả ngắn>`
 
-## Example
+## Ví dụ
 
 ```txt
 feat: #1001

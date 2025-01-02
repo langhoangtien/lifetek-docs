@@ -1,55 +1,56 @@
-# Branch conventions
+# Quy ước nhánh
 
 ---
 
 [[toc]]
 
-## Code Flow Branches
+## Các nhánh trong luồng công việc
 
-These branches which we expect to be permanently available on the repository follow the flow of code changes starting from development until the production.
+Những nhánh này sẽ luôn có mặt trong kho lưu trữ và theo dòng thay đổi mã từ phát triển cho đến sản xuất.
 
-- `develop` (dev): All new features and bug fixes should be brought to the development branch. Resolving developer codes conflicts should be done as early as here.
-- `staging` (stage): It contains tested features that the stakeholders wanted to be available either for a demo or a proposal before elevating into the production. Decisions are made here if a feature should be finally brought to the production code.
-- `main` (master): The production branch, if the repository is published, this is the default branch being presented.
+- `develop` (dev): Tất cả các tính năng mới và sửa lỗi đều được đưa vào nhánh phát triển. Việc giải quyết xung đột mã giữa các lập trình viên nên được thực hiện ngay từ nhánh này.
+- `staging` (stage): Chứa các tính năng đã được kiểm tra mà các bên liên quan muốn có sẵn, thường là để demo hoặc đề xuất trước khi nâng lên sản phẩm chính thức. Các quyết định về việc có đưa tính năng vào mã sản xuất hay không sẽ được đưa ra tại đây.
+- `main` (master): Nhánh sản xuất, nếu kho lưu trữ được công bố, đây là nhánh mặc định sẽ được trình bày.
 
-Except for Hotfixes, we want our codes to follow a one-way merge starting from **development** ➯ **test** ➯ **staging** ➯ **production**.
+Ngoại trừ Hotfixes, chúng tôi muốn mã của mình tuân theo quy trình merge một chiều từ **development** ➯ **test** ➯ **staging** ➯ **production**.
 
-## Branch names must be matched by the following regex
+## Quy tắc tên nhánh phải phù hợp với regex sau
 
 ```js
 /^(feature|bugfix|hotfix|chore|release|merge)\.([a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*)$/;
 ```
 
-## Format
+## Cấu trúc
 
 ```txt
 <type>(.<ticket>?).<subject>
 ```
 
-1. `"type"` must be one of the following types
+1. `"type"` phải là một trong các loại sau:
 
-    - `feature`: adding, refactoring or removing a feature
-    - `bugfix`: fixing a bug
-    - `hotfix`: changing code with a temporary solution and/or without following the usual process (usually because of an emergency)
-    - `chore`: changing that don't modify the logic or test code
-    - `release`: a branch for tagging a specific release version
-    - `merge`: a temporary branch for resolving merge conflicts, usually between the latest development and a feature or Hotfix branch
+   - `feature`: thêm, thay đổi hoặc xóa một tính năng
+   - `bugfix`: sửa lỗi
+   - `hotfix`: thay đổi mã với giải pháp tạm thời và/hoặc không tuân thủ quy trình thông thường (thường vì lý do khẩn cấp)
+   - `chore`: thay đổi mà không làm thay đổi logic hay mã kiểm thử
+   - `release`: nhánh để đánh dấu phiên bản phát hành cụ thể
+   - `merge`: nhánh tạm thời dùng để giải quyết xung đột merge, thường giữa nhánh phát triển mới nhất và một nhánh tính năng hoặc Hotfix
 
-2. `"ticket"` (optional)
+2. `"ticket"` (tùy chọn)
 
-   A ticket number (e.g. Jira, GitHub issue, etc.)
-    - if the branch is related to a ticket, the ticket number must be included in the branch name
-    - if the branch is not related to a ticket, the branch name must contain a short description of the task
+   Một số ticket (ví dụ: Jira, GitHub issue, v.v.)
+
+   - nếu nhánh liên quan đến một ticket, số ticket phải được bao gồm trong tên nhánh
+   - nếu nhánh không liên quan đến một ticket, tên nhánh phải chứa một mô tả ngắn gọn về nhiệm vụ
 
 3. `"subject"`
 
-   The subject contains a short description of the change
+   Mô tả ngắn gọn về thay đổi
 
-   - use the imperative, present tense (use "add" instead of "added" or "adds")
-   - don't capitalize the first letter
-   - no dot (.) at the end
+   - sử dụng thể mệnh lệnh, hiện tại (ví dụ: dùng "add" thay vì "added" hoặc "adds")
+   - không viết hoa chữ cái đầu tiên
+   - không có dấu chấm (.) ở cuối
 
-## Example
+## Ví dụ
 
 ```bash
 feature.jira-1234
@@ -85,16 +86,6 @@ chore.jira-1234.registration-form-not-working
 chore.1234.registration-form-not-working
 
 chore.registration-form-not-working
-```
-
-```bash
-bugfix.jira-1234
-
-bugfix.jira-1234.registration-form-not-working
-
-bugfix.1234.registration-form-not-working
-
-bugfix.registration-form-not-working
 ```
 
 ```bash

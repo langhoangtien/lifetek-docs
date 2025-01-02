@@ -1,20 +1,20 @@
-# Guide to Gzip Compression and Nginx Configuration for Vite Project
+# Hướng Dẫn Nén Gzip và Cấu Hình Nginx cho Dự Án Vite
 
-## Step 1: Install the `vite-plugin-compression` Plugin for Vite
+## Bước 1: Cài Đặt Plugin `vite-plugin-compression` cho Vite
 
-To begin compressing static files when building your project, you need to use the `vite-plugin-compression` plugin in your Vite project.
+Để bắt đầu nén các tệp tĩnh khi xây dựng dự án của bạn, bạn cần sử dụng plugin `vite-plugin-compression` trong dự án Vite.
 
-### Install the Plugin
+### Cài Đặt Plugin
 
-Run the following command to install the `vite-plugin-compression` plugin:
+Chạy lệnh sau để cài đặt plugin `vite-plugin-compression`:
 
 ```bash npm2yarn copy
 npm install vite-plugin-compression --save-dev
 ```
 
-### Configure the Plugin `in vite.config.js`
+### Cấu Hình Plugin trong file `vite.config.js`
 
-Open your `vite.config.js` file and add the following configuration:
+Mở file `vite.config.js` của bạn và thêm cấu hình sau:
 
 ```ts filename="vite.config.ts" copy
 import { defineConfig } from "vite";
@@ -33,20 +33,20 @@ export default defineConfig({
 });
 ```
 
-### Explanation:
+### Giải Thích:
 
-- `vite-plugin-compression` will compress static files when you build your project (compressing them into `.gz` files).
-- The compressed files will be created alongside the original files.
+- `vite-plugin-compression` sẽ nén các tệp tĩnh khi bạn xây dựng dự án của mình (nén chúng thành các tệp `.gz`).
+- Các tệp đã nén sẽ được tạo ra cùng với các tệp gốc.
 
-## Step 2: Configure Nginx to Serve Gzipped Files
+## Bước 2: Cấu Hình Nginx Để Phục Vụ Các Tệp Được Nén
 
-### Objective
+### Mục Tiêu
 
-You want Nginx to serve `.gz` files that were pre-compressed by Vite without re-compressing them on each request. The Nginx configuration will check for the existence of `.gz` files and serve them instead of the original files.
+Bạn muốn Nginx phục vụ các tệp `.gz` đã được nén trước bởi Vite mà không cần phải nén lại mỗi khi có yêu cầu. Cấu hình Nginx sẽ kiểm tra sự tồn tại của các tệp `.gz` và phục vụ chúng thay vì các tệp gốc.
 
-### Nginx Configuration
+### Cấu Hình Nginx
 
-Open your Nginx configuration file and modify or add the following settings:
+Mở tệp cấu hình Nginx và chỉnh sửa hoặc thêm các cài đặt sau:
 
 ```nginx copy
 # HTTP Server Block
@@ -83,42 +83,42 @@ server {
 
 ```
 
-### Explanation:
+### Giải Thích::
 
-- `try_files $uri $uri.gz $uri/ /index.html;`: This directive is crucial. It checks if the `.gz` file exists. If it does, Nginx serves the `.gz` file. If not, it will serve the original file.
-- gzip_static on;: This tells Nginx to serve pre-compressed `.gz` files without re-compressing them.
+- `try_files $uri $uri.gz $uri/ /index.html;`: Nginx sẽ kiểm tra xem tệp .gz có tồn tại không. Nếu có, Nginx sẽ phục vụ tệp .gz. Nếu không, Nginx sẽ phục vụ tệp gốc.
+- `gzip_static on;`: Cấu hình này yêu cầu Nginx phục vụ các tệp .gz đã được nén sẵn mà không phải nén lại.
 
-### Check and Reload Nginx
+### Kiểm Tra và Tải Lại Nginx
 
-Once you've made the configuration changes, you need to check and reload Nginx to apply the changes.
+Sau khi bạn đã thực hiện các thay đổi cấu hình, bạn cần kiểm tra và tải lại Nginx để áp dụng các thay đổi..
 
-1. Check the configuration:
+1. Kiểm tra cấu hình:
 
 ```bash copy
 sudo nginx -t
 ```
 
-2. Reload Nginx
+2. Tải lại Nginx
 
 ```bash copy
 sudo systemctl reload nginx
 ```
 
-## Step 3: Test
+## Bước 3: Kiểm Tra
 
-After configuring Nginx, you can test if Nginx is serving the `.gz` files correctly using a tool like curl.
+Sau khi cấu hình Nginx xong, bạn có thể kiểm tra xem Nginx có đang phục vụ các tệp `.gz` đúng cách không bằng cách sử dụng công cụ như `curl`.
 
-Run the following command to test:
+Chạy lệnh sau để kiểm tra::
 
 ```bash copy
 curl -I -H "Accept-Encoding: gzip" https://frontend.lifetek.dev
 ```
 
-If the configuration is correct, you will see that the `.gz` file is served instead of the original file.
+Nếu cấu hình đúng, bạn sẽ thấy rằng file `.gz` được phục vụ thay vì file gốc.
 
-## Notes:
+## Lưu ý:
 
-- If you're using Vite to compress the files before building, make sure the `.gz` files are created in the build directory.
-- Just enable `gzip_static on;` and there's no need to enable gzip compression again in Nginx if you already pre-compressed the files.
+- Nếu bạn đang sử dụng Vite để nén các file trước khi build, hãy chắc chắn rằng các file `.gz` đã được tạo trong thư mục build.
+- Chỉ cần bật `gzip_static on;` và không cần bật lại nén gzip trong Nginx nếu bạn đã nén các file trước.
 
-With this, you have completed setting up gzip compression and serving the compressed files via Nginx for your Vite project!
+Với điều này, bạn đã hoàn thành việc thiết lập nén gzip và phục vụ các file nén qua Nginx cho dự án Vite của mình!

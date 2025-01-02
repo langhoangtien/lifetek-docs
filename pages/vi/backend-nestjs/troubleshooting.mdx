@@ -1,16 +1,16 @@
-# Troubleshooting
+# Khắc phục sự cố
 
-This page contains common issues and solutions for the project.
+Trang này chứa các vấn đề thường gặp và giải pháp cho dự án.
 
 ---
 
 [[toc]]
 
-## Issues when running the application
+## Vấn đề khi chạy ứng dụng
 
-### An instance of EnvironmentVariablesValidator has failed the validation
+### Một instance của EnvironmentVariablesValidator đã không vượt qua kiểm tra
 
-When running the application, you may encounter an error similar to the following:
+Khi chạy ứng dụng, bạn có thể gặp phải lỗi tương tự như sau:
 
 ```bash
 An instance of EnvironmentVariablesValidator has failed the validation:
@@ -25,11 +25,12 @@ Error in NODE_ENV:
 
 Error in APP_LOG_SERVICE:
 + isEnum: APP_LOG_SERVICE must be one of the following values: console, google_logging, aws_cloudwatch
+
 ```
 
-This error occurs when the environment variables are not set correctly. Ensure that the `.env` file is correctly set up with the required environment variables. You can copy the `.env.example` file and rename it to `.env` to set up the environment variables.
+Lỗi này xảy ra khi các biến môi trường không được thiết lập đúng cách. Hãy đảm bảo rằng tệp `.env` được thiết lập đúng các biến môi trường yêu cầu. Bạn có thể sao chép tệp `.env.example` và đổi tên thành `.env `để thiết lập các biến môi trường.
 
-### Unable to connect to the database. Retrying
+### Không thể kết nối đến cơ sở dữ liệu. Đang thử lại
 
 ```bash
 ❯ pnpm start
@@ -69,8 +70,8 @@ AggregateError
 ...
 ```
 
-This error occurs when the application is unable to connect to the database. Ensure that the database is running and the connection details are correctly set up in the `.env` file.
+Lỗi này xảy ra khi ứng dụng không thể kết nối đến cơ sở dữ liệu. Hãy đảm bảo rằng cơ sở dữ liệu đang chạy và các thông tin kết nối đã được thiết lập chính xác trong tệp `.env`.
 
 ---
 
-Please refer to the [Configuration](./development#configuration) section for more information on setting up the environment variables.
+Vui lòng tham khảo phần [Cấu hình](./development#configuration) để biết thêm thông tin về cách thiết lập các biến môi trường.

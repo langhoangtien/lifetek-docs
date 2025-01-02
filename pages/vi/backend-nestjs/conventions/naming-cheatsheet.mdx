@@ -1,18 +1,20 @@
-# Naming cheatsheet
+import { Callout } from "nextra/components";
 
-> Source: [GitHub Repository](https://github.com/kettanaito/naming-cheatsheet/blob/main/README)
+# Quy ước đặt tên
+
+> Nguồn: [GitHub Repository](https://github.com/kettanaito/naming-cheatsheet/blob/main/README)
 
 [[toc]]
 
 ---
 
-Naming things is hard. This sheet attempts to make it easier.
+Đặt tên là một công việc khó khăn. Cheat sheet này cố gắng làm cho nó dễ dàng hơn.
 
-Although these suggestions can be applied to any programming language, I will use JavaScript to illustrate them in practice.
+Mặc dù các gợi ý này có thể áp dụng cho bất kỳ ngôn ngữ lập trình nào, nhưng tôi sẽ sử dụng JavaScript để minh họa chúng trong thực tế.
 
-## English language
+## Ngôn ngữ Tiếng Anh
 
-Use English language when naming your variables and functions.
+Sử dụng tiếng Anh khi đặt tên cho biến và hàm của bạn.
 
 ```js
 /* Bad */
@@ -24,11 +26,16 @@ const firstName = "Gustavo";
 const friends = ["Kate", "John"];
 ```
 
-> Like it or not, English is the dominant language in programming: the syntax of all programming languages is written in English, as well as countless documentations and educational materials. By writing your code in English you dramatically increase its cohesiveness.
+<Callout>
+  > Dù thích hay không, tiếng Anh là ngôn ngữ chủ đạo trong lập trình: cú pháp
+  của tất cả các ngôn ngữ lập trình đều được viết bằng tiếng Anh, cùng với vô số
+  tài liệu và tài nguyên giáo dục. Bằng cách viết mã của bạn bằng tiếng Anh, bạn
+  sẽ tăng cường sự gắn kết của mã.
+</Callout>
 
-## Naming convention
+## Quy Tắc Đặt Tên
 
-Pick **one** naming convention and follow it. It may be `camelCase`, `PascalCase`, `snake_case`, or anything else, as long as it remains consistent. Many programming languages have their own traditions regarding naming conventions; check the documentation for your language or study some popular repositories on GitHub!
+Chọn **một** quy tắc đặt tên và tuân theo nó. Nó có thể là `camelCase`, `PascalCase`, `snake_case`, hoặc bất kỳ kiểu nào khác, miễn là nó giữ được sự nhất quán. Nhiều ngôn ngữ lập trình có các truyền thống riêng về quy tắc đặt tên; kiểm tra tài liệu cho ngôn ngữ của bạn hoặc nghiên cứu một số repository phổ biến trên GitHub!
 
 ```js
 /* Bad */
@@ -46,11 +53,11 @@ const should_update = true;
 
 ## S-I-D
 
-A name must be _short_, _intuitive_ and _descriptive_:
+Tên phải ngắn gọn, mang tính trực quan và mô tả:
 
-- **Short**. A name must not take long to type and, therefore, remember;
-- **Intuitive**. A name must read naturally, as close to the common speech as possible;
-- **Descriptive**. A name must reflect what it does/possesses in the most efficient way.
+- **Ngắn gọn**. Tên không nên dài để gõ và vì vậy, dễ nhớ;
+- **Trực quan**. Tên phải đọc tự nhiên, gần với cách diễn đạt thông thường nhất có thể;
+- **Mô tả**. Tên phải phản ánh những gì nó làm/có một cách hiệu quả nhất.
 
 ```js
 /* Bad */
@@ -64,9 +71,9 @@ const hasPagination = postCount > 10;
 const shouldPaginate = postCount > 10; // alternatively
 ```
 
-## Avoid contractions
+## Tránh sử dụng từ viết tắt
 
-Do **not** use contractions. They contribute to nothing but decreased readability of the code. Finding a short, descriptive name may be hard, but contraction is not an excuse for not doing so.
+**Không** sử dụng từ viết tắt. Chúng không đóng góp gì ngoài việc giảm khả năng đọc hiểu mã. Việc tìm một tên ngắn gọn, mô tả có thể khó khăn, nhưng từ viết tắt không phải là lý do để không làm vậy.
 
 ```js
 /* Bad */
@@ -76,9 +83,9 @@ const onItmClk = () => {};
 const onItemClick = () => {};
 ```
 
-## Avoid context duplication
+## Tránh lặp lại ngữ cảnh
 
-A name should not duplicate the context in which it is defined. Always remove the context from a name if that doesn't decrease its readability.
+Tên không nên lặp lại ngữ cảnh mà nó được định nghĩa. Luôn loại bỏ ngữ cảnh khỏi tên nếu điều đó không làm giảm khả năng đọc hiểu.
 
 ```js
 class MenuItem {
@@ -90,9 +97,9 @@ class MenuItem {
 }
 ```
 
-## Reflect the expected result
+## Phản ánh kết quả mong đợi
 
-A name should reflect the expected result.
+Tên phải phản ánh kết quả mong đợi.
 
 ```jsx
 /* Bad */
@@ -106,11 +113,11 @@ return <Button disabled={isDisabled} />;
 
 ---
 
-# Naming functions
+# Đặt tên cho hàm
 
 ## A/HC/LC Pattern
 
-There is a useful pattern to follow when naming functions:
+Có một mẫu hữu ích để theo khi đặt tên hàm:
 
 ```
 prefix? + action (A) + high context (HC) + low context? (LC)
@@ -125,18 +132,22 @@ Take a look at how this pattern may be applied in the table below.
 | `handleClickOutside`   |          | `handle`   | `Click`           | `Outside`        |
 | `shouldDisplayMessage` | `should` | `Display`  | `Message`         |                  |
 
-> **Note:** The order of context affects the meaning of a variable. For example, `shouldUpdateComponent` means _you_ are about to update a component, while `shouldComponentUpdate` tells you that _component_ will update itself, and you are only controlling _when_ it should update.
-> In other words, **high context emphasizes the meaning of a variable**.
-
+<Callout>
+  > **Lưu ý:** Thứ tự ngữ cảnh ảnh hưởng đến ý nghĩa của một biến. Ví dụ,
+  `shouldUpdateComponent` có nghĩa là bạn sắp cập nhật một component, trong khi
+  `shouldComponentUpdate` nói rằng component sẽ tự cập nhật, và bạn chỉ kiểm
+  soát khi nào nó nên cập nhật > Nói cách khác, ngữ cảnh cao nhấn mạnh ý nghĩa
+  của một biến.
+</Callout>
 ---
 
-## Actions
+## Hành động
 
-The verb part of your function name. The most important part responsible for describing what the function _does_.
+Động từ trong tên hàm của bạn. Phần quan trọng nhất chịu trách nhiệm mô tả những gì hàm làm.
 
 ### `get`
 
-Accesses data immediately (i.e. shorthand getter of internal data).
+Truy xuất dữ liệu ngay lập tức (ví dụ: getter của dữ liệu nội bộ).
 
 ```js
 function getFruitCount() {
@@ -144,9 +155,9 @@ function getFruitCount() {
 }
 ```
 
-> See also [compose](#compose).
+> Xem thêm [compose](#compose).
 
-You can use `get` when performing asynchronous operations as well:
+Bạn cũng có thể sử dụng `get` khi thực hiện các thao tác bất đồng bộ:
 
 ```js
 async function getUser(id) {
@@ -157,7 +168,7 @@ async function getUser(id) {
 
 ### `set`
 
-Sets a variable in a declarative way, with value `A` to value `B`.
+Thiết lập một biến một cách tuyên bố, từ giá trị `A` thành giá trị `B`.
 
 ```js
 let fruits = 0;
@@ -172,7 +183,7 @@ console.log(fruits); // 5
 
 ### `reset`
 
-Sets a variable back to its initial value or state.
+Đặt lại một biến về giá trị hoặc trạng thái ban đầu.
 
 ```js
 const initialFruits = 5;
@@ -190,9 +201,9 @@ console.log(fruits); // 5
 
 ### `remove`
 
-Removes something _from_ somewhere.
+Loại bỏ cái gì đó ra khỏi đâu đó.
 
-For example, if you have a collection of selected filters on a search page, removing one of them from the collection is `removeFilter`, **not** `deleteFilter` (and this is how you would naturally say it in English as well):
+Ví dụ, nếu bạn có một bộ lọc đã chọn trên trang tìm kiếm, việc loại bỏ một trong số chúng khỏi bộ lọc là `removeFilter`, **chứ không phải** `deleteFilter` (và đây cũng là cách bạn sẽ nói tự nhiên trong tiếng Anh):
 
 ```js
 function removeFilter(filterName, filters) {
@@ -203,13 +214,13 @@ const selectedFilters = ["price", "availability", "size"];
 removeFilter("price", selectedFilters);
 ```
 
-> See also [delete](#delete).
+> Xem thêm [delete](#delete).
 
 ### `delete`
 
-Completely erases something from the realms of existence.
+Hoàn toàn xóa một cái gì đó khỏi thế giới tồn tại.
 
-Imagine you are a content editor, and there is that notorious post you wish to get rid of. Once you clicked a shiny "Delete post" button, the CMS performed a `deletePost` action, **not** `removePost`.
+Hãy tưởng tượng bạn là một biên tập viên nội dung, và có một bài viết nổi tiếng mà bạn muốn xóa. Một khi bạn nhấn nút "Xóa bài viết", CMS sẽ thực hiện hành động `deletePost`, **chứ không phải** `removePost`.
 
 ```js
 function deletePost(id) {
@@ -217,19 +228,19 @@ function deletePost(id) {
 }
 ```
 
-> See also [remove](#remove).
+> Xem thêm [remove](#remove).
 
-> **`remove` or `delete`?**
+> **`remove` hay `delete`?**
 >
-> When the difference between `remove` and `delete` is not so obvious to you, I'd suggest looking at their opposite actions - `add` and `create`.
-> The key difference between `add` and `create` is that `add` needs a destination while `create` **requires no destination**. You `add` an item _to somewhere_, but you don't "`create` it _to somewhere_".
-> Simply pair `remove` with `add` and `delete` with `create`.
+> Khi sự khác biệt giữa `remove` và `delete` không rõ ràng, tôi đề xuất bạn xem xét các hành động đối lập của chúng - `add` và `create`
+> Sự khác biệt chính giữa `add` và `create` là `add` cần một đích đến trong khi `create` không cần đích đến. Bạn `thêm` một mục vào đâu đó, nhưng bạn không "`tạo` nó vào đâu đó".
+> Đơn giản chỉ cần ghép `remove` với `add` và `delete` với `create`.
 >
-> Explained in detail [here](https://github.com/kettanaito/naming-cheatsheet/issues/74#issue-1174942962).
+> Giải thích chi tiết [here](https://github.com/kettanaito/naming-cheatsheet/issues/74#issue-1174942962).
 
 ### `compose`
 
-Creates new data from the existing one. Mostly applicable to strings, objects, or functions.
+Tạo ra dữ liệu mới từ dữ liệu có sẵn. Thường áp dụng cho chuỗi, đối tượng hoặc hàm.
 
 ```js
 function composePageUrl(pageName, pageId) {
@@ -237,11 +248,11 @@ function composePageUrl(pageName, pageId) {
 }
 ```
 
-> See also [get](#get).
+> Xem thêm [get](#get).
 
 ### `handle`
 
-Handles an action. Often used when naming a callback method.
+Xử lý một hành động. Thường được sử dụng khi đặt tên cho phương thức callback.
 
 ```js
 function handleLinkClick() {
@@ -253,11 +264,11 @@ link.addEventListener("click", handleLinkClick);
 
 ---
 
-## Context
+### Context
 
-A domain that a function operates on.
+Lĩnh vực mà một hàm hoạt động.
 
-A function is often an action on _something_. It is important to state what its operable domain is, or at least an expected data type.
+Một hàm thường là một hành động trên _một đối tượng nào đó_. Việc xác định lĩnh vực mà hàm hoạt động, hoặc ít nhất là kiểu dữ liệu dự kiến, rất quan trọng.
 
 ```js
 /* A pure function operating with primitives */
@@ -271,17 +282,17 @@ function getRecentPosts(posts) {
 }
 ```
 
-> Some language-specific assumptions may allow omitting the context. For example, in JavaScript, it's common that `filter` operates on Array. Adding explicit `filterArray` would be unnecessary.
+> Một số giả định riêng biệt của ngôn ngữ có thể cho phép bỏ qua ngữ cảnh. Ví dụ, trong JavaScript, hàm filter thường hoạt động trên mảng, vì vậy việc thêm tiền tố như filterArray là không cần thiết.
 
 ---
 
-## Prefixes
+## Tiền tố
 
-Prefix enhances the meaning of a variable. It is rarely used in function names.
+Tiền tố giúp làm rõ ý nghĩa của một biến, tuy nhiên chúng thường ít được sử dụng trong tên hàm.
 
 ### `is`
 
-Describes a characteristic or state of the current context (usually `boolean`).
+Miêu tả một đặc điểm hoặc trạng thái của ngữ cảnh hiện tại, thường trả về giá trị boolean.
 
 ```js
 const color = "blue";
@@ -295,7 +306,7 @@ if (isBlue && isPresent) {
 
 ### `has`
 
-Describes whether the current context possesses a certain value or state (usually `boolean`).
+Miêu tả việc liệu ngữ cảnh hiện tại có sở hữu một giá trị hoặc trạng thái nhất định hay không (thường là boolean).
 
 ```js
 /* Bad */
@@ -308,7 +319,7 @@ const hasProducts = productsCount > 0;
 
 ### `should`
 
-Reflects a positive conditional statement (usually `boolean`) coupled with a certain action.
+Miêu tả một điều kiện dương tính, thường trả về boolean, thường kết hợp với một hành động nhất định.
 
 ```js
 function shouldUpdateUrl(url, expectedUrl) {
@@ -318,7 +329,7 @@ function shouldUpdateUrl(url, expectedUrl) {
 
 ### `min`/`max`
 
-Represents a minimum or maximum value. Used when describing boundaries or limits.
+Miêu tả giá trị tối thiểu hoặc tối đa, thường dùng để chỉ các giới hạn.
 
 ```js
 /**
@@ -332,7 +343,7 @@ function renderPosts(posts, minPosts, maxPosts) {
 
 ### `prev`/`next`
 
-Indicate the previous or the next state of a variable in the current context. Used when describing state transitions.
+Chỉ ra trạng thái trước đó hoặc tiếp theo của một biến trong ngữ cảnh hiện tại, thường dùng để miêu tả sự chuyển trạng thái.
 
 ```jsx
 async function getPosts() {
@@ -345,9 +356,9 @@ async function getPosts() {
 }
 ```
 
-## Singular and Plurals
+## Sosits và số nhiều
 
-Like a prefix, variable names can be made singular or plural depending on whether they hold a single value or multiple values.
+Tương tự như tiền tố, tên biến có thể được sử dụng ở dạng số ít hoặc số nhiều tùy thuộc vào việc biến đó chứa giá trị duy nhất hay nhiều giá trị.
 
 ```js
 /* Bad */

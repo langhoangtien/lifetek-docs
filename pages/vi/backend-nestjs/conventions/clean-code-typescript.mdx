@@ -1,60 +1,44 @@
-# Clean code Typescript
+# Clean Code Typescript
 
-Clean Code concepts adapted for TypeScript.
-Inspired from [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript).
+Các khái niệm Clean Code được điều chỉnh cho TypeScript.
+Cảm hứng từ [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript).
 
-## Table of Contents
+## Mục Lục
 
-1. [Introduction](#introduction)
-2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
+1. [Giới thiệu](#giới-thiệu)
+2. [Biến](#biến)
+3. [Hàm](#hàm)
+4. [Đối tượng và Cấu trúc Dữ liệu](#đối-tượng-và-cấu-trúc-dữ-liệu)
+5. [Lớp](#lớp)
 6. [SOLID](#solid)
-7. [Testing](#testing)
+7. [Kiểm thử](#kiểm-thử)
 8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translations](#translations)
+9. [Xử lý lỗi](#xử-lý-lỗi)
+10. [Định dạng](#định-dạng)
+11. [Bình luận](#bình-luận)
+12. [Dịch](#dịch)
 
-## Introduction
+## Giới thiệu
 
-![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
+![Hình ảnh hài hước về việc ước lượng chất lượng phần mềm qua số lượng câu chửi khi đọc mã nguồn](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for TypeScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in TypeScript.
+Các nguyên lý kỹ thuật phần mềm từ cuốn sách của Robert C. Martin _Clean Code_, được điều chỉnh cho TypeScript. Đây không phải là hướng dẫn phong cách. Nó là một hướng dẫn để sản xuất phần mềm [đọc được, tái sử dụng được và dễ dàng refactor](https://github.com/ryanmcdermott/3rs-of-software-architecture) trong TypeScript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-_Clean Code_.
+Không phải tất cả các nguyên lý trong đây đều phải được tuân theo một cách nghiêm ngặt, và càng ít hơn nữa là có thể có sự đồng thuận toàn cầu. Đây chỉ là những hướng dẫn, nhưng chúng đã được mã hóa qua nhiều năm kinh nghiệm của các tác giả cuốn _Clean Code_.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-TypeScript code that you and your team produce.
+Nghề kỹ thuật phần mềm chỉ mới hơn 50 năm tuổi, và chúng ta vẫn còn học hỏi rất nhiều. Khi kiến trúc phần mềm có tuổi thọ bằng kiến trúc xây dựng, có lẽ lúc đó chúng ta sẽ có những quy tắc cứng nhắc hơn để tuân theo. Còn hiện tại, hãy để những hướng dẫn này là một công cụ để đánh giá chất lượng mã nguồn TypeScript mà bạn và nhóm của bạn sản xuất.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+Một điều nữa: biết những nguyên lý này sẽ không lập tức làm bạn trở thành một lập trình viên giỏi hơn, và việc làm việc với chúng suốt nhiều năm không có nghĩa là bạn sẽ không mắc phải sai lầm. Mỗi đoạn mã đều bắt đầu là bản nháp đầu tiên, như đất sét ướt được tạo hình thành dạng cuối cùng. Cuối cùng, chúng ta sẽ gọt dũa những khiếm khuyết khi xem xét mã với đồng nghiệp. Đừng tự trách mình vì những bản nháp đầu tiên cần cải thiện. Hãy "đánh đập" mã thay vì đánh đập chính mình!
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
-## Variables
+## Biến
 
-### Use meaningful variable names
+### Sử dụng tên biến có ý nghĩa
 
-Distinguish names in such a way that the reader knows what the differences offer.
+Phân biệt các tên sao cho người đọc biết được sự khác biệt giữa chúng.
 
-**Bad:**
+**Sai:**
 
 ```ts
 function between<T>(a1: T, a2: T, a3: T): boolean {
@@ -62,7 +46,7 @@ function between<T>(a1: T, a2: T, a3: T): boolean {
 }
 ```
 
-**Good:**
+**Đúng:**
 
 ```ts
 function between<T>(value: T, left: T, right: T): boolean {
@@ -70,13 +54,13 @@ function between<T>(value: T, left: T, right: T): boolean {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
-### Use pronounceable variable names
+### Sử dụng tên biến có thể phát âm được
 
-If you can’t pronounce it, you can’t discuss it without sounding like an idiot.
+Nếu bạn không thể phát âm được tên, bạn sẽ không thể thảo luận về nó mà không nghe như một kẻ ngốc.
 
-**Bad:**
+**Sai:**
 
 ```ts
 type DtaRcrd102 = {
@@ -86,7 +70,7 @@ type DtaRcrd102 = {
 };
 ```
 
-**Good:**
+**Đúng:**
 
 ```ts
 type Customer = {
@@ -96,11 +80,11 @@ type Customer = {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
-### Use the same vocabulary for the same type of variable
+### Sử dụng cùng một từ vựng cho cùng loại biến
 
-**Bad:**
+**Sai:**
 
 ```ts
 function getUserInfo(): User;
@@ -108,66 +92,66 @@ function getUserDetails(): User;
 function getUserData(): User;
 ```
 
-**Good:**
+**Đúng:**
 
 ```ts
 function getUser(): User;
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
-### Use searchable names
+### Sử dụng tên có thể tìm kiếm được
 
-We will read more code than we will ever write. It's important that the code we do write must be readable and searchable. By _not_ naming variables that end up being meaningful for understanding our program, we hurt our readers. Make your names searchable. Tools like [ESLint](https://typescript-eslint.io/) can help identify unnamed constants (also known as magic strings and magic numbers).
+Chúng ta sẽ đọc mã nhiều hơn là viết nó. Điều quan trọng là mã chúng ta viết phải dễ đọc và dễ tìm kiếm. Nếu bạn không đặt tên biến sao cho dễ hiểu, bạn đang làm hại người đọc. Hãy để tên biến có thể tìm kiếm được. Các công cụ như [ESLint](https://typescript-eslint.io/) có thể giúp nhận diện các hằng số không tên (còn gọi là chuỗi ma thuật hoặc số ma thuật).
 
-**Bad:**
+**Sai:**
 
 ```ts
-// What the heck is 86400000 for?
+// 86400000 là gì?
 setTimeout(restart, 86400000);
 ```
 
-**Good:**
+**Đúng:**
 
 ```ts
-// Declare them as capitalized named constants.
+// Khai báo chúng như các hằng số với tên rõ ràng
 const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000; // 86400000
 
 setTimeout(restart, MILLISECONDS_PER_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
-### Use explanatory variables
+### Sử dụng biến giải thích
 
-**Bad:**
+**Sai:**
 
 ```ts
 declare const users: Map<string, User>;
 
 for (const keyValue of users) {
-  // iterate through users map
+  // lặp qua bản đồ người dùng
 }
 ```
 
-**Good:**
+**Đúng:**
 
 ```ts
 declare const users: Map<string, User>;
 
 for (const [id, user] of users) {
-  // iterate through users map
+  // lặp qua bản đồ người dùng
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
-### Avoid Mental Mapping
+### Tránh Mapping Tâm Lý
 
-Explicit is better than implicit.
-_Clarity is king._
+Rõ ràng luôn tốt hơn ngầm hiểu.
+_Rõ ràng là vua._
 
-**Bad:**
+**Sai:**
 
 ```ts
 const u = getUser();
@@ -175,7 +159,7 @@ const s = getSubscription();
 const t = charge(u, s);
 ```
 
-**Good:**
+**Đúng:**
 
 ```ts
 const user = getUser();
@@ -183,13 +167,13 @@ const subscription = getSubscription();
 const transaction = charge(user, subscription);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
-### Don't add unneeded context
+### Đừng thêm bối cảnh không cần thiết
 
-If your class/type/object name tells you something, don't repeat that in your variable name.
+Nếu tên lớp/kiểu/đối tượng của bạn đã nói rõ điều gì đó, đừng lặp lại điều đó trong tên biến.
 
-**Bad:**
+**Sai:**
 
 ```ts
 type Car = {
@@ -203,7 +187,7 @@ function print(car: Car): void {
 }
 ```
 
-**Good:**
+**Đúng:**
 
 ```ts
 type Car = {
@@ -217,13 +201,13 @@ function print(car: Car): void {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Sử dụng tham số mặc định thay vì sử dụng điều kiện hoặc ngắt mạch
 
-Default arguments are often cleaner than short circuiting.
+Các tham số mặc định thường sạch sẽ hơn so với việc ngắt mạch.
 
-**Bad:**
+**Sai:**
 
 ```ts
 function loadPages(count?: number) {
@@ -232,7 +216,7 @@ function loadPages(count?: number) {
 }
 ```
 
-**Good:**
+**Đúng:**
 
 ```ts
 function loadPages(count: number = 10) {
@@ -240,14 +224,13 @@ function loadPages(count: number = 10) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
-### Use enum to document the intent
+### Sử dụng enum để ghi lại ý định
 
-Enums can help you document the intent of the code. For example when we are concerned about values being
-different rather than the exact value of those.
+Enum có thể giúp bạn ghi lại ý định của mã. Ví dụ, khi bạn quan tâm đến việc các giá trị khác nhau thay vì giá trị chính xác của chúng.
 
-**Bad:**
+**Sai:**
 
 ```ts
 const GENRE = {
@@ -260,17 +243,17 @@ const GENRE = {
 projector.configureFilm(GENRE.COMEDY);
 
 class Projector {
-  // declaration of Projector
+  // khai báo Projector
   configureFilm(genre) {
     switch (genre) {
       case GENRE.ROMANTIC:
-      // some logic to be executed
+      // logic nào đó được thực thi
     }
   }
 }
 ```
 
-**Good:**
+**Đúng:**
 
 ```ts
 enum GENRE {
@@ -283,17 +266,17 @@ enum GENRE {
 projector.configureFilm(GENRE.COMEDY);
 
 class Projector {
-  // declaration of Projector
+  // khai báo Projector
   configureFilm(genre) {
     switch (genre) {
       case GENRE.ROMANTIC:
-      // some logic to be executed
+      // logic nào đó được thực thi
     }
   }
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ quay lại đầu mục](#mục-lục)**
 
 ## Functions
 

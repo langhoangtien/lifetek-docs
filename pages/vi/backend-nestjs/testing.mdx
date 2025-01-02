@@ -1,69 +1,69 @@
 # Testing
 
-We use **Jest** for comprehensive unit testing in our NestJS project. Below are the various commands and methods you can use to run tests effectively.
+Chúng tôi sử dụng **Jest** để thực hiện kiểm thử đơn vị (unit test) toàn diện trong dự án NestJS của mình. Dưới đây là các lệnh và phương pháp bạn có thể sử dụng để chạy kiểm thử hiệu quả.
 
 ---
 
 [[toc]]
 
-## Unit Testing
+## Kiểm thử đơn vị (Unit Testing)
 
-### Running a Specific Test File
+### Chạy một file kiểm thử cụ thể
 
-To run tests in a specific file, use the following command:
+Để chạy kiểm thử trong một file cụ thể, sử dụng lệnh sau:
 
 ```bash copy
 pnpm test path/to/file
 
-# example: pnpm test src/api/auth/auth.controller.spec.ts
+# ví dụ: pnpm test src/api/auth/auth.controller.spec.ts
 ```
 
-## Integration Testing
+## Kiểm thử tích hợp (Integration Testing)
 
-// TODO: Add details on integration testing.
+// TODO: Thêm chi tiết về kiểm thử tích hợp.
 
-## End-to-End (E2E) Testing
+## Kiểm thử End-to-End (E2E)
 
-### Running End-to-End (e2e) Tests
+### Chạy kiểm thử End-to-End (e2e)
 
-End-to-end tests can be executed using:
+Kiểm thử End-to-End có thể được thực thi bằng lệnh:
 
 ```bash copy
 pnpm test:e2e
 ```
 
-## All Tests
+## Tất cả kiểm thử
 
-### Running All Tests
+### Chạy tất cả các kiểm thử
 
-Execute all test cases across the project using:
+Thực thi toàn bộ các trường hợp kiểm thử trong dự án bằng lệnh:
 
 ```bash copy
 pnpm test
 ```
 
-### Running Tests in Watch Mode
+### Chạy kiểm thử ở chế độ Watch
 
-For continuous testing, enabling watch mode allows you to re-run tests automatically upon file changes:
+Để kiểm thử liên tục, chế độ watch cho phép bạn tự động chạy lại kiểm thử khi có thay đổi trong file:
 
 ```bash copy
 pnpm test:watch
 ```
 
-### Running Tests with Coverage
+### Chạy kiểm thử với báo cáo Coverage
 
-To generate a code coverage report, use the command:
+Để tạo báo cáo độ phủ mã (code coverage), sử dụng lệnh:
 
 ```bash copy
 pnpm test:cov
 ```
 
-## Testing in IDE
+## Kiểm thử trên IDE
 
 ### Visual Studio Code
 
-For a seamless testing experience within Visual Studio Code, install the [Jest Runner](https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner) extension. This extension allows you to run tests directly from the test file, streamlining the development process.
+Để có trải nghiệm kiểm thử liền mạch trong Visual Studio Code, cài đặt tiện ích mở rộng [Jest Runner](https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner). Tiện ích này cho phép bạn chạy kiểm thử trực tiếp từ file kiểm thử, giúp đơn giản hóa quy trình phát triển.
 
 ![Jest Runner](https://github.com/firsttris/vscode-jest/raw/master/public/vscode-jest.gif)
 
-By following this guide, you can ensure a robust testing workflow, leading to more reliable and maintainable code.
+Bằng cách làm theo hướng dẫn này, bạn có thể đảm bảo quy trình kiểm thử hiệu quả, dẫn đến mã nguồn đáng tin cậy và dễ bảo trì hơn.

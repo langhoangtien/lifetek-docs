@@ -1,38 +1,39 @@
-## Setup & Development
+## Cài Đặt & Phát Triển
 
-### Installation
+### Cài Đặt
 
-1. Create a new project:
+1. Tạo một dự án mới:
 
    ```git copy
    git clone https://g.lifetek.vn/admin/frontend
+
    ```
 
-2. Install required libraries:
+2. Cài đặt các thư viện cần thiết:
 
    ```bash copy
    yarn
    ```
 
-### Configuration
+### Cấu Hình
 
-Before running the app, create a `.env` file in the root directory by copying the `.env.example` file:
+Trước khi chạy ứng dụng, hãy tạo một tệp `.env` trong thư mục gốc bằng cách sao chép tệp `.env.example`:
 
 ```bash copy
 cp .env.example .env
 ```
 
-details Example `.env.example` file
+Ví dụ về tệp `.env.example` file
 
 ```bash copy
 VITE_SERVER_URL=https://api.lifetek.dev/api/v1
 ```
 
-#### Environment variables
+#### Các Biến Môi Trường
 
-- `VITE_SERVER_URL`: Backend API url
+- `VITE_SERVER_URL`: URL của API Backend
 
-### Running the project
+### Khởi chạy dự án
 
 ```bash copy
  yarn dev

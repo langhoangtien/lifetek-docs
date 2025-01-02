@@ -1,45 +1,47 @@
-# Deployment Guide
+import { Callout } from "nextra/components";
 
-This guide will walk you through the process of deploying the frontend of your Vite-based React project to an Ubuntu server, which must have Nginx installed. The guide includes both manual deployment and deployment via GitLab CI/CD.
+# Hướng Dẫn Triển Khai
 
-## Server Requirements
+Hướng dẫn này sẽ hướng dẫn bạn qua quy trình triển khai frontend của dự án React dựa trên Vite lên máy chủ Ubuntu, cần cài đặt Nginx. Hướng dẫn bao gồm cả triển khai thủ công và triển khai thông qua GitLab CI/CD.
 
-- The server must be running **Ubuntu** with **Nginx** installed to serve the frontend build files.
-- For GitLab CI/CD, the server must allow SSH connections, and you will need to provide a private SSH key to authenticate the deployment.
+## Yêu Cầu Máy Chủ
 
-## Manual Deployment
+- Máy chủ phải chạy **Ubuntu** và cài đặt **Nginx** để phục vụ các tệp build của frontend.
+- Đối với GitLab CI/CD, máy chủ phải cho phép kết nối SSH, và bạn cần cung cấp khóa SSH cá nhân để xác thực quá trình triển khai.
 
-To deploy manually, follow these steps:
+## Triển Khai Thủ Công
 
-1. **Build the Application**
+Để triển khai thủ công, làm theo các bước sau:
 
-   On your local development machine, run the build command to generate the `dist/` folder containing the static files:
+1. **Build Ứng Dụng**
+
+   Trên máy phát triển của bạn, chạy lệnh build để tạo thư mục `dist/` chứa các tệp tĩnh:
 
    ```bash npm2yarn copy
    npm run build
    ```
 
-2. **Upload the Build Files to the VPS**
+2. **Tải Lên Các Tệp Build Lên VPS**
 
-   Use scp (or a similar tool like rsync) to transfer the `dist/ `folder to your Ubuntu server:
+   Sử dụng `scp` (hoặc công cụ tương tự như rsync) để upload thư mục dist/ lên máy chủ Ubuntu của bạn::
 
    ```bash copy
    scp -r dist/ root@$VPS_IP:/home/frontend
    ```
 
-- `-r`: This option means "recursive," so it will upload the entire `dist/` directory and its contents.
-- `root@$VPS_IP`: Replace `$VPS_IP` with the actual IP address of your VPS. For example, if your VPS IP is `103.124.94.148`, use `root@103.124.94.148`.
-- `/home/frontend`: This is the destination directory on the VPS where you want to upload the files. You can modify this path to match the desired location on your server.
+- `-r`: Tùy chọn này có nghĩa là "đệ quy", vì vậy nó sẽ tải lên toàn bộ thư mục `dist/` và nội dung của nó.
+- `root@$VPS_IP`: Thay thế `$VPS_IP` bằng địa chỉ IP thực tế của VPS của bạn. Ví dụ, nếu IP của VPS là `103.124.94.148`, hãy dùng `root@103.124.94.148`.
+- `/home/frontend`: Đây là thư mục đích trên VPS nơi bạn muốn tải các tệp lên. Bạn có thể thay đổi đường dẫn này để phù hợp với vị trí mong muốn trên máy chủ của mình..
 
-## Deployment via GitLab CI/CD
+## Triển Khai Qua GitLab CI/CD
 
-    You can automate the build and deployment process using GitLab CI/CD. Below are the steps for configuring GitLab CI/CD to deploy the frontend automatically when changes are made to the `main` branch.
+    Bạn có thể tự động hóa quá trình build và triển khai bằng cách sử dụng GitLab CI/CD. Dưới đây là các bước cấu hình GitLab CI/CD để tự động triển khai frontend khi có thay đổi trên nhánh `main`.
 
-### GitLab CI/CD Configuration
+### Cấu Hình GitLab CI/CD
 
-**1. File `.gitlab-ci.yml`**
+**1. Tệp `.gitlab-ci.yml`**
 
-This GitLab CI/CD configuration file automatically builds and deploys the frontend to your Ubuntu server via SSH when changes are pushed to the `main` branch.
+Tệp cấu hình GitLab CI/CD này tự động build và triển khai frontend lên máy chủ Ubuntu của bạn qua SSH khi có thay đổi trên nhánh `main`.
 
 ```yml filename=".gitlab-ci.yml" copy
 image: "node:18-alpine"
@@ -75,48 +77,53 @@ deploy:
     - "scp -r dist/ root@$VPS_IP:/home/frontend"
 ```
 
-### Steps to Set Up GitLab CI/CD
+### Các Bước Để Cấu Hình GitLab CI/CD
 
-**1. Create an SSH Key Pair**
+**1. Tạo Một Cặp Khóa SSH**
 
-On your local machine, generate an SSH key pair to authenticate the connection to your server.
+Trên máy tính của bạn, tạo một cặp khóa SSH để xác thực kết nối đến máy chủ của bạn.
 
-Run the following command and follow the prompts to create the key:
+Chạy lệnh sau và làm theo các hướng dẫn để tạo khóa:
 
 ```bash copy
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
-By default, the keys will be saved in `~/.ssh/id_rsa` and `~/.ssh/id_rsa.pub`. You can use these default names or specify different ones.
+Mặc định, các khóa sẽ được lưu tại `~/.ssh/id_rsa` và `~/.ssh/id_rsa.pub`. Bạn có thể sử dụng các tên mặc định này hoặc chỉ định tên khác.
 
-**2. Copy the Public Key to the VPS**
+**2. Sao Chép Khóa Công Khai Lên VPS**
 
-Copy the generated public key (`id_rsa.pub`) to the `~/.ssh/authorized_keys` file on your VPS to allow SSH access.
+Sao chép khóa công khai (`id_rsa.pub`) vào tệp `~/.ssh/authorized_keys` trên VPS của bạn để cho phép kết nối SSH.
 
-Run this command:
+Chạy lệnh sau:
 
 ```bash copy
 ssh-copy-id root@$VPS_IP
 ```
 
-**3. Set Up GitLab CI/CD Variables**
+<Callout>
+  > Lưu ý: Nếu bạn đang sử dụng Windows, hãy chạy lệnh này qua Git Bash để đảm
+  bảo tương thích..
+</Callout>
 
-Next, you need to configure the necessary variables on GitLab for the CI/CD pipeline.
+**3. Cấu Hình Biến Môi Trường GitLab CI/CD**
 
-- Go to your **GitLab project** and navigate to **Settings > CI / CD > Variables**.
+Tiếp theo, bạn cần cấu hình các biến cần thiết trên GitLab cho pipeline CI/CD.
 
-- Add the following variables:
+- Truy cập vào `Dự án GitLab` của bạn và chuyển đến `Settings > CI / CD > Variables`.
 
-  - `SSH_PRIVATE_KEY`: Paste the contents of your private SSH key (`id_rsa` file).
-  - `VPS_IP`: Set the IP address or domain name of your VPS server.
+- Thêm các biến sau::
 
-**4. Trigger the CI/CD Pipeline**
+  - `SSH_PRIVATE_KEY`: Nội dung của khóa SSH (`id_rsa` file).
+  - `VPS_IP`: Địa chỉ IP VPS của bạn.
 
-Every time you push code to the main branch, GitLab CI/CD will automatically build and deploy the frontend to your VPS server.
+**4. Kích Hoạt Pipeline CI/CD**
 
-## Summary
+Mỗi khi bạn đẩy mã lên nhánh `main`, GitLab CI/CD sẽ tự động build và triển khai frontend lên máy chủ VPS của bạn.
 
-You can deploy your frontend application either manually or using GitLab CI/CD. The server must be running Ubuntu with Nginx installed to serve the static files.
+## Tóm tắt
 
-- For manual deployment, you upload the build files (dist/) directly to the server via SCP.
-- For CI/CD deployment, GitLab automates the build and deployment process to your server, provided you've configured the necessary SSH keys and environment variables on GitLab.
+Bạn có thể triển khai ứng dụng frontend của mình theo cách thủ công hoặc sử dụng GitLab CI/CD. Máy chủ phải chạy Ubuntu và cài đặt Nginx để phục vụ các tệp tĩnh.
+
+- Đối với triển khai thủ công, bạn tải trực tiếp các tệp build (dist/) lên máy chủ qua SCP..
+- Đối với triển khai CI/CD, GitLab tự động hóa quá trình build và triển khai lên máy chủ của bạn, miễn là bạn đã cấu hình các khóa SSH và biến môi trường cần thiết trên GitLab.
