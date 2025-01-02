@@ -1,59 +1,7 @@
-# Tài liệu Backend Lifetek
+# Hướng Dẫn Triển Khai Phần Mềm
 
-Core backend API RESTful với NestJS.
+Hệ thống bao gồm ba thành phần chính:
 
-## Tài liệu Chi Tiết
-
-- [Cài đặt & Phát triển](development)
-- [Kiến trúc](architecture)
-- [Cơ sở Dữ liệu](database)
-- [Bảo mật](security)
-- [Kiểm thử](testing)
-- [Triển khai](deployment)
-- [Công nghệ](technologies)
-- [Khắc phục sự cố](troubleshooting)
-- Quy ước
-  - [Ghi chú Đặt tên](conventions/naming-cheatsheet)
-  - [Hướng dẫn Phong cách TypeScript và Quy ước Mã hóa](conventions/styleguide)
-  - [Quy chuẩn code TypeScript](conventions/clean-code-typescript)
-  - [Quy ước Nhánh](conventions/branch-conventions)
-  - [Quy ước Commit](conventions/commit-conventions)
-  - [Linting & Formatting](conventions/linting-and-formatting)
-
-## Tính Năng
-
-- [x] Cơ sở Dữ liệu. Hỗ trợ [TypeORM](https://www.npmjs.com/package/typeorm)
-- [x] Dữ liệu mẫu (Seeding) ([Typeorm Extension](https://www.npmjs.com/package/typeorm-extension)).
-- [x] Cấu hình ([@nestjs/config](https://www.npmjs.com/package/@nestjs/config)).
-- [x] Gửi Email ([@nestjs-modules/mailer](https://www.npmjs.com/package/@nestjs-modules/mailer) & [nodemailer](https://www.npmjs.com/package/nodemailer)).
-- [x] Đăng nhập và Đăng ký.
-- [ ] Đăng nhập Mạng Xã hội (Apple, Facebook, Google, Twitter).
-- [x] Vai trò Quản trị viên và Người dùng.
-- [x] Phân trang: Offset và Cursor (Sao chép từ [typeorm-cursor-pagination](https://github.com/benjamin658/typeorm-cursor-pagination)).
-- [x] Đa ngôn ngữ/Dịch thuật (I18N) ([nestjs-i18n](https://www.npmjs.com/package/nestjs-i18n)).
-- [x] Tải lên Tệp.
-- [x] Swagger.
-- [x] E2E and units tests.
-- [x] Docker.
-- [x] CI (GitLab CI/CD).
-
-## Tham Khảo
-
-- [TypeScript](https://www.typescriptlang.org/)
-- [NestJS](https://docs.nestjs.com/)
-- [NestJS I18n](https://nestjs-i18n.com/)
-- [TypeORM](https://typeorm.io/)
-- [TypeORM Extension](https://typeorm-extension.tada5hi.net/)
-- [Nodemailer](https://nodemailer.com/)
-- [NestJS Mailer](https://nest-modules.github.io/mailer/)
-- [Jest](https://jestjs.io/)
-- [PNPM](https://pnpm.io/)
-- [ESLint](https://eslint.org/)
-- [TypeScript ESLint](https://typescript-eslint.io/)
-- [Prettier](https://prettier.io/)
-- [Husky](https://typicode.github.io/husky/)
-- [Lint Staged](https://github.com/lint-staged/lint-staged)
-- [Commitlint](https://commitlint.js.org/)
-- [Conventional Commits](https://www.conventionalcommits.org/)
-- [Commitizen](https://commitizen-tools.github.io/commitizen/)
-- [Renovate](https://docs.renovatebot.com/)
+1. **Frontend**: [React.js (xây dựng với Vite)](frontend-reactjs)
+2. **Backend**: [NestJS với TypeORM](backend-nestjs)
+3. **App**: [React Native với Expo](app-react-native)

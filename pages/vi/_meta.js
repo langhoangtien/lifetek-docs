@@ -1,28 +1,22 @@
 export default {
-  introduction: "Giới thiệu",
-  development: "Cài đặt & Phát triển",
-  technologies: "Công nghệ",
-  architecture: "Kiến trúc",
+  introduction: "Giới thiệu", // Liên kết hoặc văn bản cho phần Giới thiệu
+  "-- Lifetek Core": {
+    // Dấu phân cách để nhóm các phần liên quan
+    type: "separator",
+    title: "Lifetek Core",
+  },
 
-  "api-d": "API",
-  database: "Cơ sở dữ liệu",
-  security: "Bảo mật",
-  testing: "Kiểm thử",
-  benchmarking: "Đánh giá hiệu năng",
-  deployment: "Triển khai",
-  troubleshooting: "Khắc phục sự cố",
-  faq: "Câu hỏi thường gặp",
-
-  conventions: "Quy ước",
-
+  "frontend-reactjs": "Frontend", // Liên kết cho phần Frontend
+  "backend-nestjs": "Backend", // Liên kết cho phần Backend
+  "app-react-native": "Ứng dụng di động", // Liên kết cho phần Ứng dụng di động
   about: {
-    title: "Về chúng tôi",
-    type: "page",
+    title: "Về chúng tôi", // Liên kết cho phần "Về chúng tôi"
+    type: "page", // Loại trang
   },
   contact: {
-    title: "Liên hệ ↗",
-    type: "page",
-    href: "https://lifetex.vn",
-    newWindow: true,
+    title: "Liên hệ ↗", // Liên kết cho phần Liên hệ
+    type: "page", // Loại trang
+    href: "https://lifetex.vn", // Địa chỉ liên kết
+    newWindow: true, // Mở liên kết trong cửa sổ mới
   },
 };

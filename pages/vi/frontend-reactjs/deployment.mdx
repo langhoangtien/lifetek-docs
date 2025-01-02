@@ -1,0 +1,122 @@
+# Deployment Guide
+
+This guide will walk you through the process of deploying the frontend of your Vite-based React project to an Ubuntu server, which must have Nginx installed. The guide includes both manual deployment and deployment via GitLab CI/CD.
+
+## Server Requirements
+
+- The server must be running **Ubuntu** with **Nginx** installed to serve the frontend build files.
+- For GitLab CI/CD, the server must allow SSH connections, and you will need to provide a private SSH key to authenticate the deployment.
+
+## Manual Deployment
+
+To deploy manually, follow these steps:
+
+1. **Build the Application**
+
+   On your local development machine, run the build command to generate the `dist/` folder containing the static files:
+
+   ```bash npm2yarn copy
+   npm run build
+   ```
+
+2. **Upload the Build Files to the VPS**
+
+   Use scp (or a similar tool like rsync) to transfer the `dist/ `folder to your Ubuntu server:
+
+   ```bash copy
+   scp -r dist/ root@$VPS_IP:/home/frontend
+   ```
+
+- `-r`: This option means "recursive," so it will upload the entire `dist/` directory and its contents.
+- `root@$VPS_IP`: Replace `$VPS_IP` with the actual IP address of your VPS. For example, if your VPS IP is `103.124.94.148`, use `root@103.124.94.148`.
+- `/home/frontend`: This is the destination directory on the VPS where you want to upload the files. You can modify this path to match the desired location on your server.
+
+## Deployment via GitLab CI/CD
+
+    You can automate the build and deployment process using GitLab CI/CD. Below are the steps for configuring GitLab CI/CD to deploy the frontend automatically when changes are made to the `main` branch.
+
+### GitLab CI/CD Configuration
+
+**1. File `.gitlab-ci.yml`**
+
+This GitLab CI/CD configuration file automatically builds and deploys the frontend to your Ubuntu server via SSH when changes are pushed to the `main` branch.
+
+```yml filename=".gitlab-ci.yml" copy
+image: "node:18-alpine"
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - npm install --legacy-peer-deps
+
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  only:
+    - main
+  before_script:
+    - apk add --no-cache openssh-client
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H $VPS_IP >> ~/.ssh/known_hosts
+  script:
+    - "scp -r dist/ root@$VPS_IP:/home/frontend"
+```
+
+### Steps to Set Up GitLab CI/CD
+
+**1. Create an SSH Key Pair**
+
+On your local machine, generate an SSH key pair to authenticate the connection to your server.
+
+Run the following command and follow the prompts to create the key:
+
+```bash copy
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+By default, the keys will be saved in `~/.ssh/id_rsa` and `~/.ssh/id_rsa.pub`. You can use these default names or specify different ones.
+
+**2. Copy the Public Key to the VPS**
+
+Copy the generated public key (`id_rsa.pub`) to the `~/.ssh/authorized_keys` file on your VPS to allow SSH access.
+
+Run this command:
+
+```bash copy
+ssh-copy-id root@$VPS_IP
+```
+
+**3. Set Up GitLab CI/CD Variables**
+
+Next, you need to configure the necessary variables on GitLab for the CI/CD pipeline.
+
+- Go to your **GitLab project** and navigate to **Settings > CI / CD > Variables**.
+
+- Add the following variables:
+
+  - `SSH_PRIVATE_KEY`: Paste the contents of your private SSH key (`id_rsa` file).
+  - `VPS_IP`: Set the IP address or domain name of your VPS server.
+
+**4. Trigger the CI/CD Pipeline**
+
+Every time you push code to the main branch, GitLab CI/CD will automatically build and deploy the frontend to your VPS server.
+
+## Summary
+
+You can deploy your frontend application either manually or using GitLab CI/CD. The server must be running Ubuntu with Nginx installed to serve the static files.
+
+- For manual deployment, you upload the build files (dist/) directly to the server via SCP.
+- For CI/CD deployment, GitLab automates the build and deployment process to your server, provided you've configured the necessary SSH keys and environment variables on GitLab.
